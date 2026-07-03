@@ -1,0 +1,34 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "blockTime": 1700000200,
+    "meta": {
+      "err": {"InstructionError": [0, "InsufficientFunds"]},
+      "fee": 5000,
+      "innerInstructions": [],
+      "logMessages": [],
+      "preBalances": [10000000000, 5000000000, 1],
+      "postBalances": [9999995000, 5000000000, 1],
+      "preTokenBalances": [],
+      "postTokenBalances": [],
+      "rewards": [],
+      "status": {"Err": {"InstructionError": [0, "InsufficientFunds"]}}
+    },
+    "slot": 230000002,
+    "transaction": {
+      "message": {
+        "accountKeys": ["7xKsender", "8yLreceiver", "11111111111111111111111111111111"],
+        "instructions": [
+          {
+            "programIdIndex": 2,
+            "accounts": [0, 1],
+            "data": "3Bxs4h24hBtQy9rw"
+          }
+        ],
+        "recentBlockhash": "GeyABCDEFGHIJKLMNOPQRSTUVWXYZ123456789"
+      },
+      "signatures": ["5failed789"]
+    }
+  },
+  "id": 1
+}

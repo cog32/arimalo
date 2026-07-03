@@ -1,0 +1,21 @@
+; Two-leg swap via equity:trading (real CSV import pattern)
+; Leg 1: Sell 10 ETH via equity:trading:sell
+; Leg 2: Receive 30000 USDC via equity:trading:buy
+; These are separate transactions with the same date/time.
+; The algorithm must match them to derive ETH proceeds from the USDC value.
+
+; First, acquire ETH
+2025-01-15 * "Exchange" "Buy ETH" ; txn:eq-buy-eth-01
+    assets:exchange:eth 10 ETH {{ 1000.00 AUD }}
+    equity:trading:buy -1000.00 AUD
+
+; Sell ETH via equity:trading (no @@ annotation, no AUD counterparty)
+2025-08-10 12:00:00 * "Uniswap" "Swap ETH for USDC" ; txn:eq-sell-eth-01
+    assets:exchange:eth -10 ETH
+    equity:trading:sell 10 ETH
+
+; Receive USDC via equity:trading (paired by same timestamp)
+; The USDC acquisition has a cost annotation so the algorithm can determine AUD value
+2025-08-10 12:00:00 * "Uniswap" "Receive USDC" ; txn:eq-buy-usdc-01
+    assets:exchange:usdc 30000 USDC {{ 30000.00 AUD }}
+    equity:trading:buy -30000.00 AUD

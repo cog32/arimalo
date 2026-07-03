@@ -1,0 +1,14 @@
+; CGT with base currency = USD where trades are denominated in EUR.
+; The PriceGraph supplies EUR→USD conversion at the trade dates.
+;
+; Buy 1 ETH for 900 EUR at EUR/USD = 1.10 → cost basis 990 USD.
+; Sell 1 ETH for 1100 EUR at EUR/USD = 1.20 → proceeds 1320 USD.
+; Expected capital gain: 330 USD (long-held, discount eligible).
+
+2024-01-15 * "Exchange" "Buy ETH in EUR" ; txn:cgt-usd-eur-buy-eth-01
+    assets:exchange:eth          1.000000 ETH
+    equity:trading:buy           -900.00 EUR
+
+2025-08-20 * "Exchange" "Sell ETH in EUR" ; txn:cgt-usd-eur-sell-eth-01
+    assets:exchange:eth         -1.000000 ETH
+    equity:trading:sell          1100.00 EUR

@@ -1,0 +1,8 @@
+; Swap: sell 50 ETH for 2000 USDC (two legs of the same trade)
+2025-10-15 * "Uniswap" "Sell ETH" ; txn:swap-sell-01
+    assets:ethereum:wallet -50 ETH
+    equity:trading:sell 50 ETH
+
+2025-10-15 * "Uniswap" "Receive USDC" ; txn:swap-buy-01
+    assets:ethereum:wallet 2000 USDC
+    equity:trading:buy -2000 USDC

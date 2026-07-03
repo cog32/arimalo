@@ -1,0 +1,19 @@
+; CGT with explicit fees on buy and sell sides.
+;
+; Buy: 1 ETH gross 1000 AUD + 10 AUD fee → cost basis 1010 (via {{ total cost }}).
+; Sell: 1 ETH gross 2000 AUD - 5 AUD fee → net proceeds 1995 (via @@ total price).
+; Expected capital gain: 1995 - 1010 = 985.
+;
+; Fee postings (expenses:fees:trading) are present so the round-trip exercises
+; them flowing through the ledger, but cost basis and proceeds are driven by
+; the cost / price annotations on the asset posting (the deterministic path).
+
+2024-01-15 * "Exchange" "Buy ETH with fee" ; txn:cgt-fee-buy-eth-01
+    assets:exchange:eth          1.000000 ETH {{ 1010.00 AUD }}
+    expenses:fees:trading           10.00 AUD
+    equity:trading:buy           -1010.00 AUD
+
+2025-08-20 * "Exchange" "Sell ETH with fee" ; txn:cgt-fee-sell-eth-01
+    assets:exchange:eth         -1.000000 ETH @@ 1995.00 AUD
+    expenses:fees:trading            5.00 AUD
+    equity:trading:sell          1995.00 AUD

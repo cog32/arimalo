@@ -1,0 +1,145 @@
+{
+  "transactions": [
+    {
+      "height": "58189549",
+      "txhash": "12B98A0128E077EF973665FB1C1674D08A21DAE2AEC6DC670A8C3A80B7207E7E",
+      "codespace": "",
+      "code": 0,
+      "data": "",
+      "info": "",
+      "gas_wanted": "24071012",
+      "gas_used": "17197905",
+      "tx": {
+        "@type": "/cosmos.tx.v1beta1.Tx",
+        "/cosmos-tx-v1beta1-Tx": {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmwasm.wasm.v1.MsgExecuteContract",
+                "/cosmwasm-wasm-v1-MsgExecuteContract": {
+                  "sender": "osmo1p6repazr66qg8eln3tdht05tw8x57kq50jr3wl",
+                  "contract": "osmo1c3ljch9dfw5kf52nfwpxd2zmj2ese7agnx0p9tenkrryasrle5sqf3ftpg",
+                  "funds": [],
+                  "msg__@stringify": "{\"eject_funds\":{\"limit\":200}}"
+                }
+              }
+            ],
+            "memo": "",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [],
+            "fee": {
+              "amount": [
+                {
+                  "denom": "uosmo",
+                  "amount": "2407102"
+                }
+              ],
+              "gas_limit": "24071012",
+              "payer": "",
+              "granter": ""
+            },
+            "tip": null
+          },
+          "signatures": []
+        }
+      },
+      "timestamp": "2026-03-30T10:58:52Z",
+      "logs": [
+        {
+          "msg_index": 0,
+          "events": [
+            {
+              "type": "message",
+              "attributes": [
+                {"key": "action", "value": "/cosmwasm.wasm.v1.MsgExecuteContract", "index": true},
+                {"key": "sender", "value": "osmo1p6repazr66qg8eln3tdht05tw8x57kq50jr3wl", "index": true}
+              ]
+            },
+            {
+              "type": "transfer",
+              "attributes": [
+                {"key": "recipient", "value": "osmo12grf7p9gndy2uy4yj4vf6danepphx0yumf3ztr", "index": true},
+                {"key": "sender", "value": "osmo1c3ljch9dfw5kf52nfwpxd2zmj2ese7agnx0p9tenkrryasrle5sqf3ftpg", "index": true},
+                {"key": "amount", "value": "1709046927uosmo", "index": true},
+                {"key": "msg_index", "value": "0", "index": true}
+              ]
+            },
+            {
+              "type": "transfer",
+              "attributes": [
+                {"key": "recipient", "value": "osmo1someotheraddr", "index": true},
+                {"key": "sender", "value": "osmo1c3ljch9dfw5kf52nfwpxd2zmj2ese7agnx0p9tenkrryasrle5sqf3ftpg", "index": true},
+                {"key": "amount", "value": "500000uosmo", "index": true},
+                {"key": "msg_index", "value": "0", "index": true}
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "height": "57981777",
+      "txhash": "FB4DE54A75DD505F667459BE9AC8331BA6BC70BAF73636C246BD72D7A3A3B58E",
+      "codespace": "",
+      "code": 0,
+      "data": "",
+      "info": "",
+      "gas_wanted": "700000",
+      "gas_used": "662467",
+      "tx": {
+        "@type": "/cosmos.tx.v1beta1.Tx",
+        "/cosmos-tx-v1beta1-Tx": {
+          "body": {
+            "messages": [
+              {
+                "@type": "/ibc.core.client.v1.MsgUpdateClient"
+              }
+            ],
+            "memo": "",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [],
+            "fee": {
+              "amount": [
+                {
+                  "denom": "uosmo",
+                  "amount": "29891"
+                }
+              ],
+              "gas_limit": "700000",
+              "payer": "",
+              "granter": ""
+            },
+            "tip": null
+          },
+          "signatures": []
+        }
+      },
+      "timestamp": "2026-03-27T09:44:42Z",
+      "logs": [
+        {
+          "msg_index": 0,
+          "events": [
+            {
+              "type": "message",
+              "attributes": [
+                {"key": "action", "value": "/ibc.core.client.v1.MsgUpdateClient", "index": true}
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "pagination": {
+    "totalCount": 9,
+    "searchAfter": "MTc3NDYwNDY4MjAwMHw1Nzk4MTc3N3xGQjRERTU0QTc1REQ1MDVGNjY3NDU5QkU5QUM4MzMxQkE2QkM3MEJBRjczNjM2QzI0NkJENzJEN0EzQTNCNThF"
+  }
+}

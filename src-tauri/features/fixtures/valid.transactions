@@ -1,0 +1,4 @@
+2026-01-15 * "Binance" "Buy SOL" ; txn:01J2N9R9, src:binance:order:999
+    assets:exchange:binance:sol    10.000000 SOL {{ 230.00 USD, fee:0.10 USD, fee_to:expenses:fees:trading, venue:binance, note:"maker fee" }}
+    assets:cash:usd              -230.10 USD
+

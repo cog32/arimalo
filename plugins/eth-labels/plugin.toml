@@ -1,0 +1,14 @@
+[plugin]
+name = "Ethereum Address Labels"
+version = "0.1.0"
+description = "Look up Ethereum addresses and add human-readable payee and commodity labels as rules"
+script = "label.py"
+
+[config]
+scan_path = { type = "string", default = "assets:crypto:wallet:ethereum", description = "Account path or folder to scan (e.g., assets:crypto:wallet:ethereum or richard/crypto/wallet/ethereum)" }
+from_column = { type = "string", default = "from_address", description = "CSV column for sender address" }
+to_column = { type = "string", default = "to_address", description = "CSV column for recipient address" }
+commodity_column = { type = "string", default = "", description = "CSV column for token contract addresses (generates commodity-rename rules)" }
+
+[secrets]
+etherscan_api_key = { type = "string", required = false, description = "Etherscan API key (free tier: 5 req/sec)" }

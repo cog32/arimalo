@@ -1,0 +1,14 @@
+; Trading PnL with both gains and losses in FY2026 (Jul 2025 - Jun 2026)
+; The income report should net losses against gains
+
+2025-08-01 * "Broker" "Trading gain" ; txn:income-pnl-gain
+    assets:trading          1000.00 AUD
+    income:trading:pnl     -1000.00 AUD
+
+2025-09-01 * "Broker" "Trading loss" ; txn:income-pnl-loss
+    assets:trading          -300.00 AUD
+    income:trading:pnl       300.00 AUD
+
+2025-10-01 * "Broker" "Another gain" ; txn:income-pnl-gain2
+    assets:trading           500.00 AUD
+    income:trading:pnl      -500.00 AUD

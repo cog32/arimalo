@@ -1,0 +1,22 @@
+; Trade link scenario: one side has price data, the other does not.
+; Selling SOL (which has AUD prices) for SKBDI (no price data).
+; After linking, SKBDI's acquisition cost should be derived from SOL's value.
+
+; First, acquire SKBDI via a swap (no price available for SKBDI)
+2025-03-01 10:00:00 * "Jupiter" "Swap SOL for SKBDI" ; txn:swap-sell-sol
+    assets:wallet:sol -6.78 SOL
+    equity:trading:sell 6.78 SOL
+
+2025-03-01 10:00:00 * "Jupiter" "Receive SKBDI" ; txn:swap-buy-skbdi
+    assets:wallet:sol 1763 SKBDI
+    equity:trading:buy -1763 SKBDI
+
+; Later, dispose of SKBDI by sending it somewhere (treated as disposal at zero
+; since SKBDI has no price — but the cost basis should be from the SOL swap)
+2025-09-15 08:00:00 * "DEX" "Sell SKBDI for USDC" ; txn:sell-skbdi
+    assets:wallet:sol -1763 SKBDI
+    equity:trading:sell 1763 SKBDI
+
+2025-09-15 08:00:00 * "DEX" "Receive USDC" ; txn:buy-usdc
+    assets:wallet:sol 500 USDC {{ 750.00 AUD }}
+    equity:trading:buy -750.00 AUD

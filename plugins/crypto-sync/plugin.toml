@@ -1,0 +1,19 @@
+[plugin]
+name = "Crypto Wallet Sync"
+version = "0.1.0"
+description = "Sync wallet transaction history from Zerion, Etherscan, Helius, Mintscan, and Binance into per-wallet CSVs"
+script = "sync.py"
+
+[config]
+wallets_file = { type = "string", default = "wallets.json", description = "Path (relative to plugin_dir) to the JSON file listing wallets and exchanges" }
+output_subpath = { type = "string", default = "richard/crypto/wallet", description = "Subpath under sources/ where per-wallet folders are created (one folder per chain/address)" }
+binance_max_rows = { type = "integer", default = 0, description = "Cap accounting rows fetched per Binance source (0 = unlimited)" }
+
+[secrets]
+zerion_api_key = { type = "string", required = false, description = "Zerion API key (required for wallets with provider=zerion)" }
+etherscan_api_key = { type = "string", required = false, description = "Etherscan v2 API key (recommended for Ethereum syncs)" }
+helius_api_key = { type = "string", required = false, description = "Helius RPC key for Solana enrichment" }
+solana_rpc_url = { type = "string", required = false, description = "Override Solana RPC URL (used if helius_api_key is not set)" }
+mintscan_api_key = { type = "string", required = false, description = "Mintscan API key for Cosmos wallets" }
+binance_api_key = { type = "string", required = false, description = "Binance API key (read-only)" }
+binance_api_secret = { type = "string", required = false, description = "Binance API secret" }

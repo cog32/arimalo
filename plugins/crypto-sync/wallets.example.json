@@ -1,0 +1,23 @@
+{
+  "ethereum": [
+    {
+      "friendly_name": "main_eth",
+      "address": "0xYOUR_ETHEREUM_ADDRESS_HERE"
+    },
+    {
+      "friendly_name": "main_wallet_multichain",
+      "address": "0xYOUR_MULTICHAIN_EVM_ADDRESS_HERE",
+      "provider": "zerion",
+      "network": "ethereum"
+    }
+  ],
+  "solana": {
+    "friendly_name": "sol_defi",
+    "address": "YOUR_SOLANA_ADDRESS_HERE"
+  },
+  "binance": {
+    "friendly_name": "main_binance",
+    "symbols": ["BTCUSDT", "ETHUSDT"],
+    "transfer_types": ["MAIN_FUNDING", "FUNDING_MAIN"]
+  }
+}

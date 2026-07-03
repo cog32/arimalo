@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "tauri-automation": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "/Users/richard/.claude/mcp-tauri-automation/dist/index.js"
+      ],
+      "env": {
+        "TAURI_APP_PATH": "/Users/richard/cog32/squirrel-covid/src-tauri/target/debug/arimalo-covid",
+        "TAURI_WEBDRIVER_PORT": "4444",
+        "TAURI_SCREENSHOT_DIR": "/Users/richard/cog32/squirrel-covid/screenshots"
+      }
+    }
+  }
+}

@@ -1,0 +1,4 @@
+P 2026-01-15 BTC 30000.00 USD
+this is not valid
+P bad-date BTC 30000.00 USD
+P 2026-01-16 BTC notanumber USD

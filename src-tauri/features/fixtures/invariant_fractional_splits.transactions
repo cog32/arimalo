@@ -1,0 +1,20 @@
+; Buy 100 units, sell in 3 equal splits of 33.33333333
+; Tests rounding accumulation — total sold must equal total cost consumed
+2025-01-15 * "Exchange" "Buy TOKEN" ; txn:inv-frac-buy-01
+    assets:exchange:token 100 TOKEN {{ 300.00 AUD }}
+    equity:trading:buy -300.00 AUD
+
+; Sell split 1: 33.33333333 TOKEN
+2025-08-10 * "Exchange" "Sell TOKEN split 1" ; txn:inv-frac-sell-01
+    assets:exchange:token -33.33333333 TOKEN @@ 133.33 AUD
+    equity:trading:sell 133.33 AUD
+
+; Sell split 2: 33.33333333 TOKEN
+2025-09-10 * "Exchange" "Sell TOKEN split 2" ; txn:inv-frac-sell-02
+    assets:exchange:token -33.33333333 TOKEN @@ 133.33 AUD
+    equity:trading:sell 133.33 AUD
+
+; Sell split 3: 33.33333334 TOKEN (the remainder)
+2025-10-10 * "Exchange" "Sell TOKEN split 3" ; txn:inv-frac-sell-03
+    assets:exchange:token -33.33333334 TOKEN @@ 133.34 AUD
+    equity:trading:sell 133.34 AUD

@@ -1,0 +1,118 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Force non-watch, non-interactive test runs
+export CI=1
+
+# `tauri dev` shares src-tauri/target with cargo test, and the running app
+# holds the Automerge metadata store that integration test binaries try to
+# open. Both cause cargo test to hang for many minutes. Stop the dev
+# session before running tests. Set SKIP_KILL_DEV=1 to disable.
+if [ "${SKIP_KILL_DEV:-0}" != "1" ]; then
+  if pgrep -f "npm run tauri:dev" >/dev/null 2>&1 \
+    || pgrep -f "node_modules/.bin/tauri dev" >/dev/null 2>&1 \
+    || pgrep -f "target/debug/arimalo-covid" >/dev/null 2>&1; then
+    echo "[pre-commit] Stopping 'tauri dev' to free target/ and app-data locks…"
+    pkill -f "npm run tauri:dev" 2>/dev/null || true
+    pkill -f "node_modules/.bin/tauri dev" 2>/dev/null || true
+    pkill -f "target/debug/arimalo-covid" 2>/dev/null || true
+    sleep 1
+  fi
+fi
+
+echo "[pre-commit] Running tests across repo and submodules..."
+
+fail_section() {
+  echo "[pre-commit] ERROR: $1" >&2
+  exit 1
+}
+
+run_node_tests() {
+  local dir="$1"
+  if [ -f "$dir/package.json" ]; then
+    if [ ! -d "$dir/node_modules" ]; then
+      echo "[pre-commit] WARNING: $dir/node_modules missing; skipping Node tests."
+      return 0
+    fi
+    if grep -q '"test"' "$dir/package.json"; then
+      echo "[pre-commit] Node tests in $dir"
+      (cd "$dir" && npm test --silent)
+    fi
+  fi
+}
+
+run_py_tests() {
+  local dir="$1"
+  if [ -d "$dir" ]; then
+    if [ -d "$dir/.venv" ]; then
+      # shellcheck disable=SC1091
+      source "$dir/.venv/bin/activate" || true
+    fi
+    # Only run pytest when a local venv is present
+    if [ -d "$dir/.venv" ] && command -v pytest >/dev/null 2>&1; then
+      echo "[pre-commit] Python tests in $dir"
+      # Ignore deprecation warnings (Python 3.12) and skip BDD step_definitions
+      (cd "$dir" && pytest -q -W ignore::DeprecationWarning -k 'not step_definitions and not placeholder')
+    else
+      echo "[pre-commit] WARNING: Skipping Python tests for $dir (no venv/pytest)."
+      echo "            Create a venv at $dir/.venv and install deps to enable."
+    fi
+  fi
+}
+
+# Root repository tests via helper scripts (one-shot)
+if [ -x "scripts/run_unit_tests.sh" ]; then
+  echo "[pre-commit] Running unit tests via scripts/run_unit_tests.sh"
+  ./scripts/run_unit_tests.sh || fail_section "Unit tests failed"
+else
+  run_node_tests "." # fallback to npm test
+fi
+
+if [ -x "scripts/run_feature_tests.sh" ]; then
+  echo "[pre-commit] Running BDD tests via scripts/run_feature_tests.sh"
+  ./scripts/run_feature_tests.sh || fail_section "BDD feature tests failed"
+fi
+
+# Optional E2E: only if Playwright is installed and runner script exists
+if [ -x "scripts/run_e2e_tests.sh" ]; then
+  if node -e "require.resolve('@playwright/test')" >/dev/null 2>&1; then
+    echo "[pre-commit] Running E2E tests via scripts/run_e2e_tests.sh"
+    ./scripts/run_e2e_tests.sh || fail_section "E2E tests failed"
+  else
+    echo "[pre-commit] Skipping E2E tests (\"@playwright/test\" not installed)"
+  fi
+fi
+
+# --- Static analysis ---
+
+# Rust: clippy (includes cognitive complexity via clippy.toml)
+if [ -f "src-tauri/Cargo.toml" ]; then
+  echo "[pre-commit] Running cargo clippy"
+  (cd src-tauri && cargo clippy --quiet 2>&1) || fail_section "cargo clippy failed"
+fi
+
+# TypeScript: complexity check on staged .ts files only
+staged_ts=$(git diff --cached --name-only --diff-filter=d -- 'src/*.ts' | grep -v '\.test\.ts$' || true)
+if [ -n "$staged_ts" ]; then
+  echo "[pre-commit] Running ESLint complexity check on staged .ts files"
+  npx eslint --no-warn-ignored --quiet $staged_ts || fail_section "ESLint complexity check failed"
+fi
+
+# Submodule .covid (Node / Jest)
+if [ -d ".covid" ]; then
+  run_node_tests ".covid"
+fi
+
+# Nested submodule core (Python / pytest)
+if [ -d ".covid/core" ]; then
+  run_py_tests ".covid/core"
+fi
+
+# Coverage ratchet — re-measures Rust + TS line coverage and rejects
+# regressions below 100%. Set SKIP_COVERAGE_RATCHET=1 to bypass.
+if [ -x "scripts/check_coverage_ratchet.sh" ]; then
+  echo "[pre-commit] Coverage ratchet check"
+  ./scripts/check_coverage_ratchet.sh || fail_section "Coverage ratchet rejected this commit"
+fi
+
+echo "[pre-commit] All configured test runs completed."

@@ -1,0 +1,16 @@
+; Old lot: buy 5 ETH at 100 AUD each (>12 months before sell)
+2024-01-15 * "Exchange" "Buy ETH old" ; txn:fifo-buy-old
+    assets:exchange:eth 5 ETH {{ 500.00 AUD }}
+    equity:trading:buy -500.00 AUD
+
+; New lot: buy 5 ETH at 200 AUD each (<12 months before sell)
+2025-06-01 * "Exchange" "Buy ETH new" ; txn:fifo-buy-new
+    assets:exchange:eth 5 ETH {{ 1000.00 AUD }}
+    equity:trading:buy -1000.00 AUD
+
+; Sell 8 ETH at 300 AUD each (consumes all old lot + 3 from new)
+; Event 1: 5 ETH from old lot, cost=500, proceeds=1500, gain=1000, ~19 months => discount
+; Event 2: 3 ETH from new lot, cost=600, proceeds=900, gain=300, ~2 months => no discount
+2025-08-10 * "Exchange" "Sell ETH" ; txn:fifo-sell-01
+    assets:exchange:eth -8 ETH @@ 2400.00 AUD
+    equity:trading:sell 2400.00 AUD

@@ -1,0 +1,38 @@
+; Multi-fill equity:trading swap with tagged buy/sell legs (Kraken pattern).
+; When multiple fills occur at the same timestamp, each sell leg must match
+; its correct buy leg — not just the first one found.
+;
+; Bug: find_equity_swap_sibling returns the FIRST sibling at the same datetime
+; with the matching equity leg, so ALL sell legs share one buy leg's proceeds.
+
+; Acquire 100 ETH at 10 AUD each
+2025-01-15 * "Kraken" "Buy ETH" ; txn:mf-tagged-acq
+    assets:crypto:exchange:kraken 100 ETH {{ 1000.00 AUD }}
+    assets:cash:aud -1000.00 AUD
+
+; Sell fill 1: 60 ETH → 600 USD
+2025-08-10 10:30:00 * "Kraken" "trade ETHUSD" ; txn:mf-tagged-sell-01
+    assets:crypto:exchange:kraken -60 ETH
+    equity:trading:sell 60 ETH
+
+2025-08-10 10:30:00 * "Kraken" "trade ETHUSD" ; txn:mf-tagged-buy-01
+    assets:crypto:exchange:kraken 600 USD
+    equity:trading:buy -600 USD
+
+; Sell fill 2: 30 ETH → 300 USD
+2025-08-10 10:30:00 * "Kraken" "trade ETHUSD" ; txn:mf-tagged-sell-02
+    assets:crypto:exchange:kraken -30 ETH
+    equity:trading:sell 30 ETH
+
+2025-08-10 10:30:00 * "Kraken" "trade ETHUSD" ; txn:mf-tagged-buy-02
+    assets:crypto:exchange:kraken 300 USD
+    equity:trading:buy -300 USD
+
+; Sell fill 3: 10 ETH → 100 USD
+2025-08-10 10:30:00 * "Kraken" "trade ETHUSD" ; txn:mf-tagged-sell-03
+    assets:crypto:exchange:kraken -10 ETH
+    equity:trading:sell 10 ETH
+
+2025-08-10 10:30:00 * "Kraken" "trade ETHUSD" ; txn:mf-tagged-buy-03
+    assets:crypto:exchange:kraken 100 USD
+    equity:trading:buy -100 USD

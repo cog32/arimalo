@@ -1,0 +1,28 @@
+[plugin]
+name = "Stock Yahoo Finance Price Sync"
+version = "0.1.0"
+description = "Fetch daily equity prices via yfinance for every market you hold. Discovers tickers under each broker account prefix (ASX/CommSec, US/IBKR, ...) and merges new closes into one P-directive price file per commodity in sources/_prices/. Incremental: re-runs fetch only the missing dates."
+script = "sync.py"
+daily = true
+
+[config]
+# Semicolon-separated market definitions. Each market is three fields joined
+# by '|':  account_prefix | yahoo_suffix | currency
+#
+#   - account_prefix : commodities posted to any account starting with this
+#                      prefix are fetched as that market's tickers.
+#   - yahoo_suffix   : appended to the commodity to form the Yahoo ticker
+#                      (ASX needs ".AX"; US tickers need no suffix).
+#   - currency       : the currency Yahoo quotes that market in. MUST match
+#                      Yahoo's native currency for the suffix (.AX -> AUD,
+#                      bare US ticker -> USD). Written verbatim into the
+#                      P-directive; USD is converted to the report base via
+#                      the existing fiat USD->AUD chain (one hop).
+#
+# Default covers CommSec (ASX, AUD) and Interactive Brokers (US, USD).
+markets = { type = "string", default = "assets:equity:broker:commsec:|.AX|AUD;assets:equity:broker:ibkr:||USD", description = "Semicolon-separated 'account_prefix|yahoo_suffix|currency' markets" }
+period = { type = "string", default = "max", description = "yfinance history period for the first fetch of a commodity (e.g. 'max', '10y', '5y')" }
+# Comma-separated COMMODITY=YAHOO_TICKER overrides for symbols Yahoo names
+# differently from the ledger commodity (e.g. BRKB=BRK-B). An override also
+# forces a fetch for a commodity that the ticker filter would otherwise skip.
+ticker_overrides = { type = "string", default = "", description = "Comma-separated COMMODITY=YAHOO_TICKER overrides" }

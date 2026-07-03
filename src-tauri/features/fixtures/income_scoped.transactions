@@ -1,0 +1,21 @@
+; Multi-scope transactions for testing base account scoping
+; Crypto scope: assets:crypto
+; Banking scope: assets:banking
+
+; Crypto income (in scope for assets:crypto)
+2025-08-01 * "Hyperliquid" "Trading gain" ; txn:scope-crypto-gain
+    assets:crypto:exchange      1000.00 AUD
+    income:trading:pnl         -1000.00 AUD
+
+2025-09-01 * "Airdrop" "Token airdrop" ; txn:scope-airdrop
+    assets:crypto:wallet         200.00 AUD
+    income:airdrops             -200.00 AUD
+
+; Banking income (NOT in scope for assets:crypto)
+2025-08-15 * "Bank" "Interest" ; txn:scope-bank-interest
+    assets:banking:savings        50.00 AUD
+    income:interest              -50.00 AUD
+
+2025-09-15 * "Employer" "Salary" ; txn:scope-salary
+    assets:banking:checking     5000.00 AUD
+    income:salary              -5000.00 AUD

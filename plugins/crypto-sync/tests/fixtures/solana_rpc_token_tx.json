@@ -1,0 +1,80 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "blockTime": 1700000100,
+    "meta": {
+      "err": null,
+      "fee": 5000,
+      "innerInstructions": [],
+      "logMessages": [],
+      "preBalances": [10000000000, 2039280, 2039280, 1],
+      "postBalances": [9999995000, 2039280, 2039280, 1],
+      "preTokenBalances": [
+        {
+          "accountIndex": 1,
+          "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+          "owner": "7xKsender",
+          "uiTokenAmount": {
+            "amount": "2000000",
+            "decimals": 6,
+            "uiAmount": 2.0,
+            "uiAmountString": "2"
+          }
+        },
+        {
+          "accountIndex": 2,
+          "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+          "owner": "8yLreceiver",
+          "uiTokenAmount": {
+            "amount": "500000",
+            "decimals": 6,
+            "uiAmount": 0.5,
+            "uiAmountString": "0.5"
+          }
+        }
+      ],
+      "postTokenBalances": [
+        {
+          "accountIndex": 1,
+          "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+          "owner": "7xKsender",
+          "uiTokenAmount": {
+            "amount": "1000000",
+            "decimals": 6,
+            "uiAmount": 1.0,
+            "uiAmountString": "1"
+          }
+        },
+        {
+          "accountIndex": 2,
+          "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+          "owner": "8yLreceiver",
+          "uiTokenAmount": {
+            "amount": "1500000",
+            "decimals": 6,
+            "uiAmount": 1.5,
+            "uiAmountString": "1.5"
+          }
+        }
+      ],
+      "rewards": [],
+      "status": {"Ok": null}
+    },
+    "slot": 230000001,
+    "transaction": {
+      "message": {
+        "accountKeys": ["7xKsender", "TokenAccountA", "TokenAccountB", "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"],
+        "instructions": [
+          {
+            "programIdIndex": 3,
+            "accounts": [1, 2, 0],
+            "data": "3Bxs4h24hBtQy9rw"
+          }
+        ],
+        "recentBlockhash": "GeyABCDEFGHIJKLMNOPQRSTUVWXYZ123456789"
+      },
+      "signatures": ["5def456soltoken"]
+    }
+  },
+  "id": 1
+}

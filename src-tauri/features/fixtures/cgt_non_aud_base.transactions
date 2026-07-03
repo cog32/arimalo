@@ -1,0 +1,13 @@
+; CGT report generated with base currency = USD (not AUD).
+;
+; Buy 1 ETH for 1000 USD (long-held > 12 months).
+; Sell 1 ETH for 1500 USD within FY2026.
+; Expected capital gain: 500 USD (discount-eligible).
+
+2024-01-15 * "Exchange" "Buy ETH (USD base)" ; txn:cgt-usd-buy-eth-01
+    assets:exchange:eth          1.000000 ETH {{ 1000.00 USD }}
+    equity:trading:buy           -1000.00 USD
+
+2025-08-20 * "Exchange" "Sell ETH (USD base)" ; txn:cgt-usd-sell-eth-01
+    assets:exchange:eth         -1.000000 ETH @@ 1500.00 USD
+    equity:trading:sell          1500.00 USD

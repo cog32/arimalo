@@ -1,0 +1,39 @@
+# Income Tax Report — FY {{ financial_year }}
+
+*Period: {{ fy_start }} to {{ fy_end }}*
+{% if has_income %}
+
+## Income
+
+| Category | Total ({{ base_currency }}) |
+|:---------|----------------------------:|
+{% for c in income_categories -%}
+| {{ c.account }} | {{ c.total }} |
+{% endfor %}
+{%- endif %}
+{% if has_expenses %}
+
+## Expenses
+
+| Category | Total ({{ base_currency }}) |
+|:---------|----------------------------:|
+{% for c in expense_categories -%}
+| {{ c.account }} | {{ c.total }} |
+{% endfor %}
+{%- endif %}
+
+## Summary
+
+| | Amount ({{ base_currency }}) |
+|:---|----------------------------:|
+| Total Income | {{ total_income }} |
+| Total Expenses | {{ total_expenses }} |
+| **Net** | **{{ net }}** |
+{% if warnings | length > 0 %}
+
+## Warnings
+
+{% for w in warnings -%}
+- {{ w }}
+{% endfor %}
+{%- endif %}

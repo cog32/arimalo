@@ -1,0 +1,27 @@
+; Salary income in FY2026 (Jul 2025 - Jun 2026)
+2025-07-15 * "Employer" "July Salary" ; txn:income-salary-jul
+    assets:bank:checking    5000.00 AUD
+    income:salary          -5000.00 AUD
+
+2025-08-15 * "Employer" "August Salary" ; txn:income-salary-aug
+    assets:bank:checking    5000.00 AUD
+    income:salary          -5000.00 AUD
+
+; Interest income
+2025-07-31 * "Bank" "Interest" ; txn:income-interest-jul
+    assets:bank:savings      50.00 AUD
+    income:interest          -50.00 AUD
+
+; Expenses
+2025-07-20 * "Office Supply" "Printer" ; txn:expense-office-jul
+    expenses:office         200.00 AUD
+    assets:bank:checking   -200.00 AUD
+
+2025-08-10 * "Telco" "Internet bill" ; txn:expense-internet-aug
+    expenses:internet        80.00 AUD
+    assets:bank:checking    -80.00 AUD
+
+; Outside FY2026 (before 1 Jul 2025) - should NOT appear
+2025-06-15 * "Employer" "June Salary" ; txn:income-salary-jun
+    assets:bank:checking    4500.00 AUD
+    income:salary          -4500.00 AUD

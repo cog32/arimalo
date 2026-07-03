@@ -1,0 +1,3 @@
+2026-01-15 * "Binance" "Buy BTC" ; txn:test001
+    assets:exchange:binance:btc    5.000000 BTC @ 32000.00 USD
+    assets:cash:usd              -160000.00 USD

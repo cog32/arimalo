@@ -1,0 +1,38 @@
+; Multiple fills at same timestamp via plain equity:trading (Bybit multi-fill pattern)
+; 3 sell fills + 3 receipt fills, all same datetime + narration.
+; Auto-linking must pair by sorted amount to avoid cross-contamination.
+
+; First, acquire SWELL
+2025-01-15 * "Bybit" "BUY SWELLUSDT" ; txn:mf-buy-01
+    assets:crypto:exchange:bybit 1000 SWELL {{ 20.00 AUD }}
+    equity:trading:buy -20.00 AUD
+
+; Sell fill 1: 100 SWELL
+2025-08-10 10:42:48 * "Bybit" "SELL SWELLUSDT" ; txn:mf-sell-01
+    assets:crypto:exchange:bybit -100 SWELL
+    equity:trading 100 SWELL
+
+; Sell fill 2: 400 SWELL
+2025-08-10 10:42:48 * "Bybit" "SELL SWELLUSDT" ; txn:mf-sell-02
+    assets:crypto:exchange:bybit -400 SWELL
+    equity:trading 400 SWELL
+
+; Sell fill 3: 500 SWELL
+2025-08-10 10:42:48 * "Bybit" "SELL SWELLUSDT" ; txn:mf-sell-03
+    assets:crypto:exchange:bybit -500 SWELL
+    equity:trading 500 SWELL
+
+; Receipt fill 1: 2.80 USDT (matches 100 SWELL @ 0.028)
+2025-08-10 10:42:48 * "Bybit" "SELL SWELLUSDT" ; txn:mf-recv-01
+    assets:crypto:exchange:bybit 2.80 USDT
+    equity:trading -2.80 USDT
+
+; Receipt fill 2: 11.20 USDT (matches 400 SWELL @ 0.028)
+2025-08-10 10:42:48 * "Bybit" "SELL SWELLUSDT" ; txn:mf-recv-02
+    assets:crypto:exchange:bybit 11.20 USDT
+    equity:trading -11.20 USDT
+
+; Receipt fill 3: 14.00 USDT (matches 500 SWELL @ 0.028)
+2025-08-10 10:42:48 * "Bybit" "SELL SWELLUSDT" ; txn:mf-recv-03
+    assets:crypto:exchange:bybit 14.00 USDT
+    equity:trading -14.00 USDT

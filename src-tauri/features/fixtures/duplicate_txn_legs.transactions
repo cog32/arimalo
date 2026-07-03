@@ -1,0 +1,19 @@
+; Regression: when two on-chain transactions share the same Solana
+; signature (txn:HASH), datetime, narration and per-transaction amount,
+; each must still render as a separately addressable row.
+;
+; Real-world example: Raydium swaps emit several Beancount transactions
+; per signature — one per token transfer — and their (txn, datetime,
+; narration, amount) tuples can collide entirely. If `data-expand-key`
+; is computed only from those four fields, both rows share the same key:
+; clicking one toggles both, and morphdom (which keys txn-row identity
+; on `data-expand-key`) collapses the pair, so content shuffles between
+; them and the user can never reach the Edit Rule button on the duplicate.
+
+2026-02-01 09:00:00 * "Raydium" "token_transfer:trade MNGO" ; txn:rad-001
+    assets:crypto:wallet:solana:mngo  -9903.19 MNGO
+    expenses:fees:swap                 9903.19 MNGO
+
+2026-02-01 09:00:00 * "Raydium" "token_transfer:trade MNGO" ; txn:rad-001
+    assets:crypto:wallet:solana:mngo  -9903.19 MNGO
+    expenses:fees:swap                 9903.19 MNGO

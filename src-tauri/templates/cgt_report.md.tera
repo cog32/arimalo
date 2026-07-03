@@ -1,0 +1,31 @@
+# Capital Gains Tax Report — FY {{ financial_year }}
+
+*Period: {{ fy_start }} to {{ fy_end }}*
+{% if has_events %}
+
+## Disposal Events
+
+| Sell Date | Buy Date | Asset | Qty | Cost Basis | Proceeds | Gain/Loss | Days Held | Discount | Net Gain |
+|-----------|----------|-------|----:|-----------:|---------:|----------:|----------:|----------|--------:|
+{% for e in events -%}
+| {{ e.sell_date }} | {{ e.buy_date }} | {{ e.commodity }} | {{ e.quantity }} | {{ e.cost_basis }} | {{ e.sale_proceeds }} | {{ e.capital_gain }} | {{ e.holding_days }} | {{ e.discount }} | {{ e.discounted_gain }} |
+{% endfor %}
+
+## Summary
+
+| | Amount |
+|:---|------:|
+| Total Gains | {{ total_gains }} |
+| Total Losses | {{ total_losses }} |
+| **Net Capital Gain** | **{{ net_capital_gain }}** |
+| **After CGT Discount** | **{{ total_discounted_gain }}** |
+{% else %}
+*No capital gains events in this financial year.*
+{% endif %}
+{% if has_warnings %}
+
+## Warnings
+{% for w in warnings %}
+- {{ w }}
+{%- endfor %}
+{% endif %}

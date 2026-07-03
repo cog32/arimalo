@@ -1,0 +1,40 @@
+; Pre-tagged equity:trading:buy/sell legs across two asset accounts (bybit
+; multi-subaccount pattern). Each account has its own independent buy/sell
+; pair at the exact same timestamp. The legs are pre-tagged by rules (not
+; plain equity:trading), and carry no swap:txn:xxx reference — so the price
+; annotation pass must find the partner by datetime + opposite leg.
+;
+; Bug: the partner search at line 708-724 of processing_pipeline.rs looks up
+; candidates in datetime_index (keyed by datetime only) and returns the first
+; match. With no account-scoping, account B's VIRTUAL buy gets paired with
+; account A's USDT sell, producing a wildly wrong per-unit price.
+
+; Acquire VIRTUAL in two separate subaccounts (pre-FY buys, priced directly
+; in AUD — keeps the fixture independent of PriceGraph). Different buy dates
+; make CGT event ordering deterministic (sorted by sell_date then buy_date).
+2025-01-15 * "Bybit" "Acquire VIRTUAL A" ; txn:acq-a
+    assets:crypto:exchange:bybit:a 5 VIRTUAL {{ 15.00 AUD }}
+    assets:cash:aud -15.00 AUD
+
+2025-01-16 * "Bybit" "Acquire VIRTUAL B" ; txn:acq-b
+    assets:crypto:exchange:bybit:b 30 VIRTUAL {{ 450.00 AUD }}
+    assets:cash:aud -450.00 AUD
+
+; === Simultaneous swaps at 2025-08-10 10:30:00 ===
+; Account A: swap 5 VIRTUAL → 10 USDT  (at USDT=1.50 AUD → proceeds $15.00 → $3.00/VIRTUAL)
+2025-08-10 10:30:00 * "Bybit" "SELL VIRTUALUSDT" ; txn:a-sell-virt, rule:trade-aa-sell
+    assets:crypto:exchange:bybit:a -5 VIRTUAL
+    equity:trading:sell 5 VIRTUAL
+
+2025-08-10 10:30:00 * "Bybit" "SELL VIRTUALUSDT" ; txn:a-buy-usdt, rule:trade-aa-buy
+    assets:crypto:exchange:bybit:a 10 USDT
+    equity:trading:buy -10 USDT
+
+; Account B: swap 30 VIRTUAL → 300 USDT (at USDT=1.50 AUD → proceeds $450.00 → $15.00/VIRTUAL)
+2025-08-10 10:30:00 * "Bybit" "SELL VIRTUALUSDT" ; txn:b-sell-virt, rule:trade-bb-sell
+    assets:crypto:exchange:bybit:b -30 VIRTUAL
+    equity:trading:sell 30 VIRTUAL
+
+2025-08-10 10:30:00 * "Bybit" "SELL VIRTUALUSDT" ; txn:b-buy-usdt, rule:trade-bb-buy
+    assets:crypto:exchange:bybit:b 300 USDT
+    equity:trading:buy -300 USDT

@@ -1,0 +1,33 @@
+; FY2026 = Jul 2025 to Jun 2026 (Australian fiscal year)
+
+; Buy BTC within FY2026
+2025-07-15 * "Binance" "Buy BTC" ; txn:bal-btc-1
+    assets:crypto:binance:btc    0.50 BTC
+    assets:fiat:bank          -30000.00 AUD
+
+; Buy ETH within FY2026
+2025-08-15 * "Binance" "Buy ETH" ; txn:bal-eth-1
+    assets:crypto:binance:eth    2.00 ETH
+    assets:fiat:bank           -8000.00 AUD
+
+; Move 0.20 BTC to a cold wallet — splits the BTC holding across two leaf
+; accounts (binance + ledger) so per-account breakdown can be exercised.
+2025-09-10 * "Self" "Move BTC to cold wallet" ; txn:bal-btc-move
+    assets:crypto:ledger:btc      0.20 BTC
+    assets:crypto:binance:btc    -0.20 BTC
+
+; Buy SPAM (no price available) within FY2026
+2025-09-01 * "Binance" "Buy SPAM" ; txn:bal-spam-1
+    assets:crypto:binance:spam  100.00 SPAM
+    assets:fiat:bank              -50.00 AUD
+
+; Buy more BTC AFTER FY2026 — must be excluded from 2026-06-30 snapshot
+2026-07-15 * "Binance" "Buy more BTC after FY" ; txn:bal-btc-2
+    assets:crypto:binance:btc    0.10 BTC
+    assets:fiat:bank           -8000.00 AUD
+
+; Scam token receipt — offset goes to ignore:spam. Whole txn must be skipped
+; by the Balances report (no SCAM holding, no missing-price warning).
+2026-02-01 * "Random Wallet" "Spam airdrop SCAM" ; txn:bal-spam-airdrop
+    assets:crypto:binance:scam   500.00 SCAM
+    ignore:spam                 -500.00 SCAM

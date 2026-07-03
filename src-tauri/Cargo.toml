@@ -1,0 +1,130 @@
+[package]
+name = "arimalo-covid"
+version = "0.1.0"
+edition = "2021"
+default-run = "arimalo-covid"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+regex = "1"
+thiserror = "1"
+rhai = "1"
+csv = "1"
+sha2 = "0.10"
+hex = "0.4"
+ureq = { version = "2", features = ["json"] }
+automerge = "0.7"
+autosurgeon = "0.10"
+walkdir = "2"
+machine-uid = "0.5"
+hostname = "0.4"
+tiny_http = "0.12"
+uuid = { version = "1", features = ["v4"] }
+rand = "0.8"
+notify = "7"
+tera = "1"
+chrono = "0.4"
+toml = "0.8"
+parking_lot = "0.12"
+tauri-plugin-webdriver-automation = { version = "0.1", optional = true }
+
+[features]
+custom-protocol = ["tauri/custom-protocol"]
+webdriver = ["tauri-plugin-webdriver-automation"]
+
+[dev-dependencies]
+cucumber = "=0.21.1"
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
+csv = "1"
+tempfile = "3"
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+lto = true
+opt-level = "s"
+
+# Faster dev/test compile + link by emitting only line-table debug info.
+# Trade-off: less detail when stepping in a debugger; line numbers in
+# panic backtraces still work.
+[profile.dev]
+debug = "line-tables-only"
+
+# Bins are thin CLI wrappers with no in-bin #[test] items. Their tested
+# logic lives in the library and integration tests. Skip their test
+# executables so cargo test doesn't compile + run them (several open the
+# production Automerge metadata store at startup, which hangs).
+[[bin]]
+name = "ledger-parse"
+path = "src/bin/ledger_parse.rs"
+test = false
+
+[[bin]]
+name = "arimalo-relay"
+path = "src/bin/relay.rs"
+test = false
+
+[[bin]]
+name = "arimalo-web"
+path = "src/bin/arimalo_web.rs"
+test = false
+
+[[bin]]
+name = "arimalo-import"
+path = "src/bin/arimalo_import.rs"
+test = false
+
+[[bin]]
+name = "arimalo-regenerate"
+path = "src/bin/arimalo_regenerate.rs"
+test = false
+
+[[bin]]
+name = "arimalo-gaps"
+path = "src/bin/arimalo_gaps.rs"
+test = false
+
+[[bin]]
+name = "arimalo-query"
+path = "src/bin/arimalo_query.rs"
+test = false
+
+[[bin]]
+name = "arimalo-issues"
+path = "src/bin/arimalo_issues.rs"
+test = false
+
+[[bin]]
+name = "arimalo-classify"
+path = "src/bin/arimalo_classify.rs"
+test = false
+
+[[bin]]
+name = "arimalo-reports"
+path = "src/bin/arimalo_reports.rs"
+test = false
+
+[[bin]]
+name = "arimalo-repair-trade-links"
+path = "src/bin/arimalo_repair_trade_links.rs"
+test = false
+
+[[bin]]
+name = "arimalo-migrate-rules"
+path = "src/bin/arimalo_migrate_rules.rs"
+test = false
+
+[[bin]]
+name = "arimalo-dedupe"
+path = "src/bin/arimalo_dedupe.rs"
+test = false
+
+[[test]]
+name = "bdd"
+harness = false

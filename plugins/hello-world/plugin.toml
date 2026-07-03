@@ -1,0 +1,9 @@
+[plugin]
+name = "Hello World"
+version = "0.1.0"
+description = "Example plugin that demonstrates the interface"
+script = "hello.py"
+
+[config]
+greeting = { type = "string", default = "Hello", description = "Greeting to use" }
+repeat = { type = "integer", default = 3, description = "How many times to repeat" }

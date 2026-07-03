@@ -1,0 +1,18 @@
+; Auto-linked plain equity:trading swap (Bybit pattern)
+; Two separate transactions for each side of the trade, both using plain equity:trading.
+; The pipeline auto-links them by adding swap: metadata and :sell/:buy suffixes.
+
+; First, acquire SWELL
+2025-01-15 * "Bybit" "BUY SWELLUSDT" ; txn:pool-buy-01
+    assets:crypto:exchange:bybit 1000 SWELL {{ 20.00 AUD }}
+    equity:trading:buy -20.00 AUD
+
+; Sell SWELL via plain equity:trading (no :sell suffix)
+2025-08-10 10:42:48 * "Bybit" "SELL SWELLUSDT" ; txn:pool-sell-01
+    assets:crypto:exchange:bybit -1000 SWELL
+    equity:trading 1000 SWELL
+
+; Receive USDT via plain equity:trading (no :buy suffix)
+2025-08-10 10:42:48 * "Bybit" "SELL SWELLUSDT" ; txn:pool-recv-01
+    assets:crypto:exchange:bybit 28.00 USDT
+    equity:trading -28.00 USDT

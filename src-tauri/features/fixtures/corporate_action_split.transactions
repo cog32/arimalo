@@ -1,0 +1,19 @@
+; Pre-split: buy 10 ETHTEST for 1000 AUD on 2023-07-01 (FY 2024)
+2023-07-01 * "Exchange" "Buy ETHTEST" ; txn:split-buy-01
+    assets:exchange:test    10 ETHTEST {{ 1000.00 AUD }}
+    equity:trading:buy   -1000.00 AUD
+
+; 10:1 corporate-action stock split on 2023-12-15 (FY 2024).
+; Adds +90 ETHTEST units via the equity:corporate-actions:split contra.
+; No cash leg; the split itself must NOT be treated as a CGT disposal.
+; Documented limitation: the +90 units enter FIFO as a zero-cost lot —
+; basis is not re-allocated across pre-split lots.
+2023-12-15 * "Corporate action" "ETHTEST 10:1 split" ; txn:split-corp-01
+    assets:exchange:test    90 ETHTEST
+    equity:corporate-actions:split   -90 ETHTEST
+
+; Post-split: sell all 100 ETHTEST for 500 AUD on 2024-09-01 (FY 2025).
+; FIFO consumes 10 priced units (cost 1000 AUD) then 90 zero-cost units.
+2024-09-01 * "Exchange" "Sell ETHTEST" ; txn:split-sell-01
+    assets:exchange:test  -100 ETHTEST @@ 500.00 AUD
+    equity:trading:sell    500.00 AUD

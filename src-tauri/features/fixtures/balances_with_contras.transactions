@@ -1,0 +1,30 @@
+; FY2026 portfolio with a non-zero residual on a contra account.
+;
+; Used by the Balances report scenarios that exercise the
+; "primary accounts only" allowlist: the report must include
+; postings to declared source-folder accounts and EXCLUDE
+; postings to routing contras (assets:crypto:transfer here),
+; even when both share the scope prefix.
+
+; Buy BTC into the binance wallet (primary)
+2025-07-15 * "Binance" "Buy BTC" ; txn:bal-c-btc-1
+    assets:crypto:binance:btc       0.50 BTC
+    assets:fiat:bank           -30000.00 AUD
+
+; Buy ETH into binance (primary)
+2025-08-15 * "Binance" "Buy ETH" ; txn:bal-c-eth-1
+    assets:crypto:binance:eth       2.00 ETH
+    assets:fiat:bank            -8000.00 AUD
+
+; Inbound USDC routed via the transfer contra: 1000 USDC ends up
+; on the primary, contra absorbs the offset (-1000).
+2025-09-01 * "Inbound" "USDC into binance via transfer" ; txn:bal-c-usdc-1
+    assets:crypto:binance:usdc    1000.00 USDC
+    assets:crypto:transfer       -1000.00 USDC
+
+; Stranded routing slack: contra account ends up holding +500 USDC
+; with the offset hitting fiat. This is the "ghost" balance the bug
+; surfaces when scope sums everything under assets:crypto.
+2025-09-15 * "Stranded" "USDC routing slack" ; txn:bal-c-usdc-2
+    assets:crypto:transfer        500.00 USDC
+    assets:fiat:bank             -500.00 AUD

@@ -1,0 +1,5 @@
+2026-01-16T10:05:03Z * "Kraken" "Sell BTC" ; txn:01J2NB..., src:kraken:trade:def456
+    assets:exchange:kraken:btc   -0.005000 BTC { 30000 USD, 2026-01-15T09:31:22.123456+11:00, "original acquisition", lot:kraken:btc:abc123 } @@ 160.00 USD
+    assets:cash:usd               160.00 USD
+    income:trading:pnl            -10.00 USD
+

@@ -1,0 +1,57 @@
+{
+  "transactions": [
+    {
+      "height": "57000000",
+      "txhash": "AAAAAA1111111111111111111111111111111111111111111111111111111111",
+      "codespace": "",
+      "code": 5,
+      "data": "",
+      "info": "",
+      "gas_wanted": "200000",
+      "gas_used": "150000",
+      "tx": {
+        "@type": "/cosmos.tx.v1beta1.Tx",
+        "/cosmos-tx-v1beta1-Tx": {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.bank.v1beta1.MsgSend",
+                "/cosmos-bank-v1beta1-MsgSend": {
+                  "from_address": "osmo12grf7p9gndy2uy4yj4vf6danepphx0yumf3ztr",
+                  "to_address": "osmo1receiveraddr",
+                  "amount": [{"denom": "uosmo", "amount": "5000000"}]
+                }
+              }
+            ],
+            "memo": "",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [],
+            "fee": {
+              "amount": [
+                {
+                  "denom": "uosmo",
+                  "amount": "5000"
+                }
+              ],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            },
+            "tip": null
+          },
+          "signatures": []
+        }
+      },
+      "timestamp": "2026-03-20T12:00:00Z",
+      "logs": []
+    }
+  ],
+  "pagination": {
+    "totalCount": 9,
+    "searchAfter": null
+  }
+}
