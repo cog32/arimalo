@@ -1,0 +1,32 @@
+; Multi-fill exchange trade: 3 HNT buys + 3 USDT sells at same timestamp via equity:trading.
+; Tests group trade link detection and bulk linking.
+
+; HNT buy fill 1: 26.75 HNT
+2025-11-13 18:44:35 * "Bybit" "BUY HNTUSDT" ; txn:mf-hnt-01
+    assets:crypto:exchange:bybit 26.75 HNT
+    equity:trading -26.75 HNT
+
+; HNT buy fill 2: 9.96 HNT
+2025-11-13 18:44:35 * "Bybit" "BUY HNTUSDT" ; txn:mf-hnt-02
+    assets:crypto:exchange:bybit 9.96 HNT
+    equity:trading -9.96 HNT
+
+; HNT buy fill 3: 7.20 HNT
+2025-11-13 18:44:35 * "Bybit" "BUY HNTUSDT" ; txn:mf-hnt-03
+    assets:crypto:exchange:bybit 7.20 HNT
+    equity:trading -7.20 HNT
+
+; USDT sell fill 1: 59.22 USDT
+2025-11-13 18:44:35 * "Bybit" "BUY HNTUSDT" ; txn:mf-usdt-01
+    assets:crypto:exchange:bybit -59.22 USDT
+    equity:trading 59.22 USDT
+
+; USDT sell fill 2: 22.15 USDT
+2025-11-13 18:44:35 * "Bybit" "BUY HNTUSDT" ; txn:mf-usdt-02
+    assets:crypto:exchange:bybit -22.15 USDT
+    equity:trading 22.15 USDT
+
+; USDT sell fill 3: 16.03 USDT
+2025-11-13 18:44:35 * "Bybit" "BUY HNTUSDT" ; txn:mf-usdt-03
+    assets:crypto:exchange:bybit -16.03 USDT
+    equity:trading 16.03 USDT

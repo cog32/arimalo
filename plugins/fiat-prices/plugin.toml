@@ -1,0 +1,10 @@
+[plugin]
+name = "Fiat Price Sync"
+version = "0.1.0"
+description = "Fetch daily fiat/USD historical exchange rates via yfinance (Yahoo Finance) — AUD, EUR, GBP, etc."
+script = "sync.py"
+daily = true
+
+[config]
+currencies = { type = "string", default = "AUD,EUR,GBP", description = "Comma-separated fiat currency codes to fetch (each priced in USD)" }
+period = { type = "string", default = "max", description = "yfinance period (e.g. 'max', '10y', '5y', '1y')" }

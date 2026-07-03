@@ -1,0 +1,33 @@
+; Crypto staking rewards (income with commodity)
+2025-08-15 * "Lido" "ETH staking reward" ; txn:income-stake-eth-aug
+    assets:crypto:wallet:eth     0.25 ETH @@ 1000.00 AUD
+    income:staking:eth          -0.25 ETH @@ 1000.00 AUD
+
+2025-09-10 * "Lido" "ETH staking reward" ; txn:income-stake-eth-sep
+    assets:crypto:wallet:eth     0.50 ETH @@ 1500.00 AUD
+    income:staking:eth          -0.50 ETH @@ 1500.00 AUD
+
+; BTC mining
+2025-10-05 * "Pool" "BTC mining payout" ; txn:income-mine-btc
+    assets:crypto:wallet:btc     0.001 BTC @@ 100.00 AUD
+    income:mining:btc           -0.001 BTC @@ 100.00 AUD
+
+; Plain fiat salary
+2025-07-15 * "Employer" "Salary" ; txn:income-salary
+    assets:bank:checking         5000.00 AUD
+    income:salary               -5000.00 AUD
+
+; Expense in fiat
+2025-08-10 * "Telco" "Internet bill" ; txn:expense-internet
+    expenses:internet              80.00 AUD
+    assets:bank:checking          -80.00 AUD
+
+; Trading fee recorded as a *positive* posting on income:* (debit on income).
+; This is the Hyperliquid convention: gross PnL is credited and fees are
+; debited against the same income tree, so the category nets to true PnL.
+; The corresponding event must carry a *negative* value so summing events
+; matches the category total — i.e. we don't report 100 USDC of "income"
+; and 100 USDC of "fee" both as positive 150 AUD contributions.
+2025-08-20 * "Hyperliquid" "Trading fee" ; txn:income-fee-usdc
+    assets:crypto:exchange:hyperliquid:personal -100.00 USDC @@ 150.00 AUD
+    income:trading:fees                          100.00 USDC @@ 150.00 AUD

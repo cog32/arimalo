@@ -1,0 +1,30 @@
+{
+  "type": "transactions",
+  "id": "a67b88ad-4057-57b3-871d-072c583ef8d8",
+  "attributes": {
+    "address": "EEbn9Cm91zkDRh9M9aHfBnmZzGsSAgiVddPHRaCfi53m",
+    "operation_type": "execute",
+    "hash": "4umcmkQ7FX2Co4WUDb1LgQucYw21ae3ah7tnQgdCGBnCAMG34NW2NDRQ3EB9abXUK1QUyMF4BvpgXeREGuDVf8Zb",
+    "mined_at_block": 97716283,
+    "mined_at": "2021-09-22T00:25:58Z",
+    "sent_from": "EEbn9Cm91zkDRh9M9aHfBnmZzGsSAgiVddPHRaCfi53m",
+    "sent_to": "",
+    "status": "confirmed",
+    "nonce": 0,
+    "fee": {
+      "quantity": {
+        "int": "5000",
+        "decimals": 9,
+        "float": 5e-06,
+        "numeric": "0.000005000"
+      }
+    },
+    "transfers": [],
+    "approvals": [],
+    "flags": {"is_trash": false},
+    "acts": []
+  },
+  "relationships": {
+    "chain": {"data": {"type": "chains", "id": "solana"}}
+  }
+}

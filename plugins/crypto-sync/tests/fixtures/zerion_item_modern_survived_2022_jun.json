@@ -1,0 +1,351 @@
+{
+  "type": "transactions",
+  "id": "ec63c431-b6c2-5949-a33d-468f6a5a3fe5",
+  "attributes": {
+    "address": "2baaTDzidWekQWQydZcBSwHXgqK1LF9QUUn7VioUrVVD",
+    "operation_type": "trade",
+    "hash": "4LWD4WQjFAoebGyzEdjxRaACQEb3q1ZokdZQssvF7R9AHdhcfSLpUX8xepgHxynBcYugmADrwGmn5fQpVDfCWYCv",
+    "mined_at_block": 138627736,
+    "mined_at": "2022-06-22T23:54:27Z",
+    "sent_from": "2baaTDzidWekQWQydZcBSwHXgqK1LF9QUUn7VioUrVVD",
+    "sent_to": "",
+    "status": "confirmed",
+    "nonce": 0,
+    "fee": {
+      "fungible_info": {
+        "id": "11111111111111111111111111111111",
+        "name": "Solana",
+        "symbol": "SOL",
+        "icon": {
+          "url": "https://cdn.zerion.io/11111111111111111111111111111111.png"
+        },
+        "flags": {
+          "verified": true
+        },
+        "implementations": [
+          {
+            "chain_id": "solana",
+            "address": "",
+            "decimals": 9
+          }
+        ]
+      },
+      "quantity": {
+        "int": "5000",
+        "decimals": 9,
+        "float": 5e-06,
+        "numeric": "0.000005000"
+      },
+      "price": 34.2839925978,
+      "value": 0.00017141996298900003
+    },
+    "transfers": [
+      {
+        "fungible_info": {
+          "id": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "name": "USDC",
+          "symbol": "USDC",
+          "icon": {
+            "url": "https://cdn.zerion.io/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48.png"
+          },
+          "flags": {
+            "verified": true
+          },
+          "implementations": [
+            {
+              "chain_id": "0g",
+              "address": "0x1f3aa82227281ca364bfb3d253b0f1af1da6473e",
+              "decimals": 6
+            },
+            {
+              "chain_id": "abstract",
+              "address": "0x84a71ccd554cc1b02749b35d22f684cc8ec987e1",
+              "decimals": 6
+            },
+            {
+              "chain_id": "ape",
+              "address": "0xf1815bd50389c46847f0bda824ec8da914045d14",
+              "decimals": 6
+            },
+            {
+              "chain_id": "arbitrum",
+              "address": "0xaf88d065e77c8cc2239327c5edb3a432268e5831",
+              "decimals": 6
+            },
+            {
+              "chain_id": "aurora",
+              "address": "0xb12bfca5a55806aaf64e99521918a4bf0fc40802",
+              "decimals": 6
+            },
+            {
+              "chain_id": "avalanche",
+              "address": "0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e",
+              "decimals": 6
+            },
+            {
+              "chain_id": "base",
+              "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+              "decimals": 6
+            },
+            {
+              "chain_id": "berachain",
+              "address": "0x549943e04f40284185054145c6e4e9568c1d3241",
+              "decimals": 6
+            },
+            {
+              "chain_id": "binance-smart-chain",
+              "address": "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d",
+              "decimals": 18
+            },
+            {
+              "chain_id": "celo",
+              "address": "0xceba9300f2b948710d2653dd7b07f33a8b32118c",
+              "decimals": 6
+            },
+            {
+              "chain_id": "degen",
+              "address": "0xf1815bd50389c46847f0bda824ec8da914045d14",
+              "decimals": 6
+            },
+            {
+              "chain_id": "ethereum",
+              "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+              "decimals": 6
+            },
+            {
+              "chain_id": "gravity-alpha",
+              "address": "0xfbda5f676cb37624f28265a144a48b0d6e87d3b6",
+              "decimals": 6
+            },
+            {
+              "chain_id": "hypercore",
+              "address": "",
+              "decimals": 8
+            },
+            {
+              "chain_id": "hyperevm",
+              "address": "0xb88339cb7199b77e23db6e890353e22632ba630f",
+              "decimals": 6
+            },
+            {
+              "chain_id": "ink",
+              "address": "0x2d270e6886d130d724215a266106e6832161eaed",
+              "decimals": 6
+            },
+            {
+              "chain_id": "katana",
+              "address": "0x203a662b0bd271a6ed5a60edfbd04bfce608fd36",
+              "decimals": 6
+            },
+            {
+              "chain_id": "lens",
+              "address": "0x88f08e304ec4f90d644cec3fb69b8ad414acf884",
+              "decimals": 6
+            },
+            {
+              "chain_id": "linea",
+              "address": "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
+              "decimals": 6
+            },
+            {
+              "chain_id": "manta-pacific",
+              "address": "0xb73603c5d87fa094b7314c74ace2e64d165016fb",
+              "decimals": 6
+            },
+            {
+              "chain_id": "mantle",
+              "address": "0x09bc4e0d864854c6afb6eb9a9cdf58ac190d0df9",
+              "decimals": 6
+            },
+            {
+              "chain_id": "metis-andromeda",
+              "address": "0xea32a96608495e54156ae48931a7c20f0dcc1a21",
+              "decimals": 6
+            },
+            {
+              "chain_id": "mode",
+              "address": "0xd988097fb8612cc24eec14542bc03424c656005f",
+              "decimals": 6
+            },
+            {
+              "chain_id": "monad",
+              "address": "0x754704bc059f8c67012fed69bc8a327a5aafb603",
+              "decimals": 6
+            },
+            {
+              "chain_id": "okbchain",
+              "address": "0x74b7f16337b8972027f6196a17a631ac6de26d22",
+              "decimals": 6
+            },
+            {
+              "chain_id": "optimism",
+              "address": "0x0b2c639c533813f4aa9d7837caf62653d097ff85",
+              "decimals": 6
+            },
+            {
+              "chain_id": "polygon",
+              "address": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+              "decimals": 6
+            },
+            {
+              "chain_id": "polygon-zkevm",
+              "address": "0xa8ce8aee21bc2a48a5ef670afcc9274c7bbbc035",
+              "decimals": 6
+            },
+            {
+              "chain_id": "rari",
+              "address": "0xfbda5f676cb37624f28265a144a48b0d6e87d3b6",
+              "decimals": 6
+            },
+            {
+              "chain_id": "ronin",
+              "address": "0x0b7007c13325c48911f73a2dad5fa5dcbf808adc",
+              "decimals": 6
+            },
+            {
+              "chain_id": "scroll",
+              "address": "0x06efdbff2a14a7c8e15944d1f4a48f9f95f663a4",
+              "decimals": 6
+            },
+            {
+              "chain_id": "sei",
+              "address": "0xe15fc38f6d8c56af07bbcbe3baf5708a2bf42392",
+              "decimals": 6
+            },
+            {
+              "chain_id": "solana",
+              "address": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+              "decimals": 6
+            },
+            {
+              "chain_id": "soneium",
+              "address": "0xba9986d2381edf1da03b0b9c1f8b00dc4aacc369",
+              "decimals": 6
+            },
+            {
+              "chain_id": "sonic",
+              "address": "0x29219dd400f2bf60e5a23d13be72b486d4038894",
+              "decimals": 6
+            },
+            {
+              "chain_id": "taiko",
+              "address": "0x07d83526730c7438048d55a4fc0b850e2aab6f0b",
+              "decimals": 6
+            },
+            {
+              "chain_id": "tempo",
+              "address": "0x20c000000000000000000000b9537d11c60e8b50",
+              "decimals": 6
+            },
+            {
+              "chain_id": "unichain",
+              "address": "0x078d782b760474a361dda0af3839290b0ef57ad6",
+              "decimals": 6
+            },
+            {
+              "chain_id": "wonder",
+              "address": "0x3b50ac254a535200461c1cd3819ecd5eb1bc5ba3",
+              "decimals": 6
+            },
+            {
+              "chain_id": "world",
+              "address": "0x79a02482a880bce3f13e09da970dc34db4cd24d1",
+              "decimals": 6
+            },
+            {
+              "chain_id": "xdai",
+              "address": "0xddafbb505ad214d7b80b1f830fccc89b60fb7a83",
+              "decimals": 6
+            },
+            {
+              "chain_id": "xinfin-xdc",
+              "address": "0xfa2958cb79b0491cc627c1557f441ef849ca8eb1",
+              "decimals": 6
+            },
+            {
+              "chain_id": "zero",
+              "address": "0x6a6394f47dd0baf794808f2749c09bd4ee874e70",
+              "decimals": 6
+            },
+            {
+              "chain_id": "zksync-era",
+              "address": "0x1d17cbcf0d6d143135ae902365d2e5e2a16538d4",
+              "decimals": 6
+            },
+            {
+              "chain_id": "zora",
+              "address": "0xcccccccc7021b32ebb4e8c08314bd62f7c653ec4",
+              "decimals": 6
+            }
+          ]
+        },
+        "direction": "in",
+        "quantity": {
+          "int": "3646487",
+          "decimals": 6,
+          "float": 3.646487,
+          "numeric": "3.646487"
+        },
+        "value": 3.6581615541477865,
+        "price": 1.0032015894058546,
+        "sender": "JUP3c2Uh3WA4Ng34tw6kPd2G4C5BB21Xo36Je1s32Ph",
+        "recipient": "2baaTDzidWekQWQydZcBSwHXgqK1LF9QUUn7VioUrVVD",
+        "act_id": "0"
+      },
+      {
+        "fungible_info": {
+          "id": "c7c374e9-ceb5-4d18-b960-29319d3e8052",
+          "name": "Tulip",
+          "symbol": "TULIP",
+          "icon": null,
+          "flags": {
+            "verified": false
+          },
+          "implementations": [
+            {
+              "chain_id": "solana",
+              "address": "TuLipcqtGVXP9XR62wM8WWCm6a9vhLs7T1uoWBk6FDs",
+              "decimals": 6
+            }
+          ]
+        },
+        "direction": "out",
+        "quantity": {
+          "int": "1087622",
+          "decimals": 6,
+          "float": 1.087622,
+          "numeric": "1.087622"
+        },
+        "value": 3.6581615541477865,
+        "price": 3.3634493915604744,
+        "sender": "2baaTDzidWekQWQydZcBSwHXgqK1LF9QUUn7VioUrVVD",
+        "recipient": "JUP3c2Uh3WA4Ng34tw6kPd2G4C5BB21Xo36Je1s32Ph",
+        "act_id": "0"
+      }
+    ],
+    "approvals": [],
+    "flags": {
+      "is_trash": false
+    },
+    "acts": [
+      {
+        "id": "0",
+        "type": "trade",
+        "application_metadata": {
+          "contract_address": "JUP3c2Uh3WA4Ng34tw6kPd2G4C5BB21Xo36Je1s32Ph"
+        }
+      }
+    ]
+  },
+  "relationships": {
+    "chain": {
+      "links": {
+        "related": "https://api.zerion.io/v1/chains/solana"
+      },
+      "data": {
+        "type": "chains",
+        "id": "solana"
+      }
+    }
+  }
+}

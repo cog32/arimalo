@@ -1,0 +1,3 @@
+2021-08-15 * "Raydium" "Add liquidity" ; txn:lp001, src:raydium:lp:001
+    assets:exchange:raydium:lp    5.000000 RAY-SOL {{ 10.00 USD }}
+    assets:cash:usd              -10.00 USD

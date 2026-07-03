@@ -1,0 +1,17 @@
+; Two-leg swap via equity:trading with PriceGraph resolution
+; Same as equity swap but buy-leg has no AUD annotation - needs PriceGraph
+
+; First, acquire ETH
+2025-01-15 * "Exchange" "Buy ETH" ; txn:eqp-buy-eth-01
+    assets:exchange:eth 10 ETH {{ 1000.00 AUD }}
+    equity:trading:buy -1000.00 AUD
+
+; Sell ETH via equity:trading
+2025-08-10 12:00:00 * "Uniswap" "Swap ETH for USDC" ; txn:eqp-sell-eth-01
+    assets:exchange:eth -10 ETH
+    equity:trading:sell 10 ETH
+
+; Receive USDC via equity:trading (no AUD annotation, no cost annotation)
+2025-08-10 12:00:00 * "Uniswap" "Receive USDC" ; txn:eqp-buy-usdc-01
+    assets:exchange:usdc 30000 USDC
+    equity:trading:buy -30000 USDC

@@ -1,0 +1,28 @@
+{
+  "status": "1",
+  "message": "OK",
+  "result": [
+    {
+      "blockNumber": "18500002",
+      "timeStamp": "1700000200",
+      "hash": "0xabc123token",
+      "transactionIndex": "3",
+      "from": "0xfromaddr",
+      "to": "0xtoaddr",
+      "value": "500000000",
+      "gas": "65000",
+      "gasPrice": "25000000000",
+      "gasUsed": "52000",
+      "cumulativeGasUsed": "142000",
+      "tokenName": "USD Coin",
+      "tokenSymbol": "USDC",
+      "tokenDecimal": "6",
+      "contractAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "input": "deprecated",
+      "methodId": "0xa9059cbb",
+      "functionName": "transfer(address to, uint256 value)",
+      "txreceipt_status": "1",
+      "confirmations": "2345"
+    }
+  ]
+}

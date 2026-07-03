@@ -1,0 +1,20 @@
+; Buy 5, sell 7 (oversell), then buy 3 more, sell 3
+; Second sell should match against the new lot, not carry forward unmatched
+2025-01-15 * "Exchange" "Buy ETH" ; txn:inv-oversell-buy-01
+    assets:exchange:eth 5 ETH {{ 500.00 AUD }}
+    equity:trading:buy -500.00 AUD
+
+; Sell 7 — oversell by 2
+2025-08-10 * "Exchange" "Oversell ETH" ; txn:inv-oversell-sell-01
+    assets:exchange:eth -7 ETH @@ 1400.00 AUD
+    equity:trading:sell 1400.00 AUD
+
+; Buy 3 more
+2025-09-01 * "Exchange" "Buy ETH again" ; txn:inv-oversell-buy-02
+    assets:exchange:eth 3 ETH {{ 600.00 AUD }}
+    equity:trading:buy -600.00 AUD
+
+; Sell 3 — should match against the new lot (cost=600)
+2025-10-15 * "Exchange" "Sell ETH" ; txn:inv-oversell-sell-02
+    assets:exchange:eth -3 ETH @@ 900.00 AUD
+    equity:trading:sell 900.00 AUD

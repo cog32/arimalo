@@ -1,0 +1,24 @@
+{
+  "status": "1",
+  "message": "OK",
+  "result": [
+    {
+      "blockNumber": "18500001",
+      "timeStamp": "1700000100",
+      "hash": "0xabc123internal",
+      "transactionIndex": "2",
+      "from": "0xcontract",
+      "to": "0xfromaddr",
+      "value": "500000000000000000",
+      "gas": "50000",
+      "gasUsed": "30000",
+      "cumulativeGasUsed": "90000",
+      "confirmations": "900",
+      "isError": "0",
+      "type": "call",
+      "input": "0x1234",
+      "methodId": "0x",
+      "functionName": ""
+    }
+  ]
+}

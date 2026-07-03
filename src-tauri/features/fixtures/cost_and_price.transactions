@@ -1,0 +1,3 @@
+2026-01-15 * "Binance" "Buy SOL" ; txn:test003
+    assets:exchange:binance:sol    10.000000 SOL { 23.00 USD, venue:binance } @@ 230.00 USD
+    assets:cash:usd              -230.00 USD

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Arimalo COVID</title>
+    <!-- PWA: installable web app shell (browser builds only; ignored in Tauri) -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#0b1b2e" />
+    <link rel="apple-touch-icon" href="/icons/icon-256.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Arimalo" />
+    <script>
+      // Register the service worker only in a real browser (http/https), never
+      // inside the Tauri webview (tauri:// protocol).
+      if (
+        "serviceWorker" in navigator &&
+        (location.protocol === "http:" || location.protocol === "https:")
+      ) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("/sw.js").catch(() => {});
+        });
+      }
+    </script>
+  </head>
+  <body spellcheck="false" autocorrect="off" autocapitalize="off">
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

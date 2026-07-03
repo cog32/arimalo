@@ -1,0 +1,17 @@
+; Transactions deliberately in REVERSE chronological order
+; The engine must sort by date before applying FIFO
+
+; Sell 5 ETH at 300 AUD each (written first but happens last)
+2025-08-10 * "Exchange" "Sell ETH" ; txn:inv-order-sell-01
+    assets:exchange:eth -5 ETH @@ 1500.00 AUD
+    equity:trading:sell 1500.00 AUD
+
+; Buy 5 ETH at 200 AUD each (written second)
+2025-03-20 * "Exchange" "Buy ETH lot 2" ; txn:inv-order-buy-02
+    assets:exchange:eth 5 ETH {{ 1000.00 AUD }}
+    equity:trading:buy -1000.00 AUD
+
+; Buy 10 ETH at 100 AUD each (written last but happens first)
+2025-01-15 * "Exchange" "Buy ETH lot 1" ; txn:inv-order-buy-01
+    assets:exchange:eth 10 ETH {{ 1000.00 AUD }}
+    equity:trading:buy -1000.00 AUD

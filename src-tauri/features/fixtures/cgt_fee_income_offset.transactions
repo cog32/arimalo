@@ -1,0 +1,17 @@
+; CGT with fee booked as a positive posting on income:trading:fees
+; (Hyperliquid convention: gross PnL credited to income, fees debited against
+; the same income tree so the category nets to true PnL).
+;
+; Buy: 1 ETH for 1000 AUD (no fee on the buy side).
+; Sell: 1 ETH gross 2000 AUD, 8 AUD trading fee booked on income:trading:fees,
+; net proceeds 1992 AUD on equity:trading:sell. The @@ annotation pins
+; CGT proceeds to the net figure (1992), so capital gain = 1992 - 1000 = 992.
+
+2024-01-15 * "Exchange" "Buy ETH" ; txn:cgt-feeinc-buy-eth-01
+    assets:exchange:eth          1.000000 ETH {{ 1000.00 AUD }}
+    equity:trading:buy           -1000.00 AUD
+
+2025-08-20 * "Hyperliquid" "Sell ETH (fee as income offset)" ; txn:cgt-feeinc-sell-eth-01
+    assets:exchange:eth         -1.000000 ETH @@ 1992.00 AUD
+    income:trading:fees              8.00 AUD
+    equity:trading:sell          1992.00 AUD

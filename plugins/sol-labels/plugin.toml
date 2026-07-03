@@ -1,0 +1,14 @@
+[plugin]
+name = "Solana Address Labels"
+version = "0.1.0"
+description = "Look up Solana addresses and add human-readable payee and commodity labels as rules"
+script = "label.py"
+
+[config]
+scan_path = { type = "string", default = "assets:crypto:wallet:solana", description = "Account path or folder to scan (e.g., assets:crypto:wallet:solana or richard/crypto/wallet/solana)" }
+from_column = { type = "string", default = "from_address", description = "CSV column for sender address" }
+to_column = { type = "string", default = "to_address", description = "CSV column for recipient address" }
+commodity_column = { type = "string", default = "token_contract", description = "CSV column for token mint addresses (generates commodity-rename rules)" }
+
+[secrets]
+solana_rpc_url = { type = "string", required = false, description = "Solana RPC endpoint (default: mainnet-beta)" }

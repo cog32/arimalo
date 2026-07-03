@@ -1,0 +1,17 @@
+; Acquire ETH first
+2025-01-15 * "Exchange" "Buy ETH" ; txn:fifo-buy-eth-01
+    assets:exchange:eth 50 ETH {{ 2500.00 AUD }}
+    equity:trading:buy -2500.00 AUD
+
+; Swap ETH for USDC (single transaction, both sides annotated)
+; ETH disposal: proceeds = 3000 AUD, cost = 2500 (from FIFO lot), gain = 500
+; USDC acquisition: cost = 3000 AUD, creates new FIFO lot
+2025-10-15 * "Uniswap" "Swap ETH to USDC" ; txn:fifo-swap-01
+    assets:exchange:eth -50 ETH @@ 3000.00 AUD
+    assets:exchange:usdc 2000 USDC {{ 3000.00 AUD }}
+
+; Sell USDC (uses lot from swap acquisition)
+; cost = 3000 (from swap lot), proceeds = 3100, gain = 100
+2025-11-01 * "Exchange" "Sell USDC" ; txn:fifo-sell-usdc-01
+    assets:exchange:usdc -2000 USDC @@ 3100.00 AUD
+    equity:trading:sell 3100.00 AUD

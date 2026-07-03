@@ -1,0 +1,12 @@
+; Test that CGT uses the @ price annotation on the posting directly.
+; SKBDI has a price annotation from auto_link (no PriceGraph entry needed).
+
+; Acquire SKBDI with an inline price annotation
+2024-10-17 05:47:34 * "Raydium" "Buy SKBDI" ; txn:ann-buy-skbdi
+    assets:wallet 1763 SKBDI @ 0.77 AUD
+    equity:trading:buy -1763 SKBDI
+
+; Sell SKBDI later with proceeds in AUD
+2025-09-15 08:00:00 * "DEX" "Sell SKBDI" ; txn:ann-sell-skbdi
+    assets:wallet -1763 SKBDI @ 0.50 AUD
+    equity:trading:sell 1763 SKBDI

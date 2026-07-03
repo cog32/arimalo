@@ -1,0 +1,101 @@
+{
+  "type": "transactions",
+  "id": "ba7a15d0-3dee-535c-9127-33852094d9ce",
+  "attributes": {
+    "address": "2baaTDzidWekQWQydZcBSwHXgqK1LF9QUUn7VioUrVVD",
+    "operation_type": "send",
+    "hash": "kCVhMN8ZNFg3tHnD7BBkpSAD8uPet466zDpfswrsUXE9bRYg1n6QZYDQwWoHumVWGDC5YgAsHPT7ypfcXEvjJp2",
+    "mined_at_block": 414800442,
+    "mined_at": "2026-04-22T00:24:18Z",
+    "sent_from": "2baaTDzidWekQWQydZcBSwHXgqK1LF9QUUn7VioUrVVD",
+    "sent_to": "",
+    "status": "confirmed",
+    "nonce": 0,
+    "fee": {
+      "fungible_info": {
+        "id": "11111111111111111111111111111111",
+        "name": "Solana",
+        "symbol": "SOL",
+        "icon": {
+          "url": "https://cdn.zerion.io/11111111111111111111111111111111.png"
+        },
+        "flags": {
+          "verified": true
+        },
+        "implementations": [
+          {
+            "chain_id": "solana",
+            "address": "",
+            "decimals": 9
+          }
+        ]
+      },
+      "quantity": {
+        "int": "9596",
+        "decimals": 9,
+        "float": 9.596e-06,
+        "numeric": "0.000009596"
+      },
+      "price": 86.4136967208,
+      "value": 0.0008292258337327967
+    },
+    "transfers": [
+      {
+        "fungible_info": {
+          "id": "11111111111111111111111111111111",
+          "name": "Solana",
+          "symbol": "SOL",
+          "icon": {
+            "url": "https://cdn.zerion.io/11111111111111111111111111111111.png"
+          },
+          "flags": {
+            "verified": true
+          },
+          "implementations": [
+            {
+              "chain_id": "solana",
+              "address": "",
+              "decimals": 9
+            }
+          ]
+        },
+        "direction": "out",
+        "quantity": {
+          "int": "824880",
+          "decimals": 9,
+          "float": 0.00082488,
+          "numeric": "0.000824880"
+        },
+        "value": 0.07128093015105351,
+        "price": 86.4136967208,
+        "sender": "2baaTDzidWekQWQydZcBSwHXgqK1LF9QUUn7VioUrVVD",
+        "recipient": "burn68h9dS2tvZwtCFMt79SyaEgvqtcZZWJphizQxgt",
+        "act_id": "0"
+      }
+    ],
+    "approvals": [],
+    "flags": {
+      "is_trash": false
+    },
+    "acts": [
+      {
+        "id": "0",
+        "type": "send",
+        "application_metadata": {
+          "contract_address": "burn68h9dS2tvZwtCFMt79SyaEgvqtcZZWJphizQxgt"
+        }
+      }
+    ]
+  },
+  "relationships": {
+    "chain": {
+      "links": {
+        "related": "https://api.zerion.io/v1/chains/solana"
+      },
+      "data": {
+        "type": "chains",
+        "id": "solana"
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+[
+  {
+    "blockchain": "ethereum",
+    "friendly_name": "main_eth",
+    "address": "0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe"
+  },
+  {
+    "blockchain": "solana",
+    "friendly_name": "sol_defi",
+    "address": "7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU"
+  }
+]

@@ -1,0 +1,8 @@
+; Buy and sell on same day — holding period should be 0 days, no discount
+2025-08-10 * "Exchange" "Buy ETH" ; txn:inv-sameday-buy-01
+    assets:exchange:eth 5 ETH {{ 500.00 AUD }}
+    equity:trading:buy -500.00 AUD
+
+2025-08-10 * "Exchange" "Sell ETH" ; txn:inv-sameday-sell-01
+    assets:exchange:eth -5 ETH @@ 750.00 AUD
+    equity:trading:sell 750.00 AUD

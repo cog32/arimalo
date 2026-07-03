@@ -1,0 +1,19 @@
+[plugin]
+name = "Crypto Spot Prices"
+version = "0.3.0"
+description = "Single daily crypto spot-price source. Reads a plain-text commodities file (one block per commodity, sources tried in order: Binance -> CoinGecko -> yfinance), backfills full history, and discovers commodities you hold but haven't declared. The core pipeline only reads the price files it writes."
+script = "sync.py"
+daily = true
+
+[config]
+commodities_file = { type = "string", default = "commodities.txt", description = "Plain-text commodities file (relative to .data/). The source of truth for what to price and from where; edit by hand or let discover append to it." }
+discover = { type = "boolean", default = true, description = "Scan the generated ledgers for held commodities not yet declared, probe Binance/CoinGecko, and append the ones that resolve (others are reported as warnings)" }
+discover_limit = { type = "integer", default = 150, description = "Max new commodities to probe per run (busiest first); the rest are picked up on later runs" }
+quote_pair = { type = "string", default = "USDT", description = "Binance quote pair used when discover proposes a new commodity (USDT ~= USD)" }
+start_date = { type = "string", default = "2017-01-01", description = "Backfill floor — full daily history is fetched from here (sources return from their listing date if later)" }
+refresh_days = { type = "integer", default = 7, description = "Once a commodity is backfilled, daily runs only re-fetch this many recent days" }
+force_backfill = { type = "boolean", default = false, description = "Re-backfill full history for every commodity on the next run" }
+max_age_days = { type = "integer", default = 3, description = "A source is rejected (falls through to the next) if its newest price is older than this" }
+
+[secrets]
+coingecko_api_key = { type = "string", required = false, description = "CoinGecko demo API key (free) — lifts the rate limit on the CoinGecko source + discover search. Get one at coingecko.com/en/developers/dashboard" }

@@ -1,0 +1,9 @@
+; Buy held >12 months but sold at a loss — discount should NOT apply to losses
+2024-01-15 * "Exchange" "Buy ETH" ; txn:inv-loss-buy-01
+    assets:exchange:eth 10 ETH {{ 2000.00 AUD }}
+    equity:trading:buy -2000.00 AUD
+
+; Sell at loss (100 AUD each, bought at 200 each)
+2025-08-10 * "Exchange" "Sell ETH at loss" ; txn:inv-loss-sell-01
+    assets:exchange:eth -10 ETH @@ 1000.00 AUD
+    equity:trading:sell 1000.00 AUD

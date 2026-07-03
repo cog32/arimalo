@@ -1,0 +1,17 @@
+; Buy on 2024-08-10, sell on 2025-08-10 — exactly 12 months
+; Should be discount eligible (>= 12 months)
+2024-08-10 * "Exchange" "Buy ETH at boundary" ; txn:inv-boundary-buy-01
+    assets:exchange:eth 5 ETH {{ 500.00 AUD }}
+    equity:trading:buy -500.00 AUD
+
+; Buy on 2024-08-11, sell on 2025-08-10 — 1 day short of 12 months
+; Should NOT be discount eligible
+2024-08-11 * "Exchange" "Buy ETH short" ; txn:inv-boundary-buy-02
+    assets:exchange:eth 5 ETH {{ 500.00 AUD }}
+    equity:trading:buy -500.00 AUD
+
+; Sell all 10 ETH at 200 AUD each
+; FIFO: lot 1 (5 ETH, cost=500, discount) + lot 2 (5 ETH, cost=500, no discount)
+2025-08-10 * "Exchange" "Sell ETH" ; txn:inv-boundary-sell-01
+    assets:exchange:eth -10 ETH @@ 2000.00 AUD
+    equity:trading:sell 2000.00 AUD

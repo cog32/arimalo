@@ -1,0 +1,14 @@
+{
+  "jsonrpc": "2.0",
+  "result": [
+    {
+      "signature": "5abc123solana",
+      "slot": 230000000,
+      "blockTime": 1700000000,
+      "err": null,
+      "memo": null,
+      "confirmationStatus": "finalized"
+    }
+  ],
+  "id": 1
+}

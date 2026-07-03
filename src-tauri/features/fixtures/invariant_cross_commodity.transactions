@@ -1,0 +1,14 @@
+; Buy ETH and BTC, sell only ETH
+; BTC lots must never be consumed by ETH sell
+2025-01-15 * "Exchange" "Buy ETH" ; txn:inv-cross-buy-eth
+    assets:exchange:eth 10 ETH {{ 1000.00 AUD }}
+    equity:trading:buy -1000.00 AUD
+
+2025-02-01 * "Exchange" "Buy BTC" ; txn:inv-cross-buy-btc
+    assets:exchange:btc 1 BTC {{ 50000.00 AUD }}
+    equity:trading:buy -50000.00 AUD
+
+; Sell 10 ETH — cost should come only from ETH lot (1000), not BTC
+2025-08-10 * "Exchange" "Sell ETH" ; txn:inv-cross-sell-eth
+    assets:exchange:eth -10 ETH @@ 2000.00 AUD
+    equity:trading:sell 2000.00 AUD

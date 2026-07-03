@@ -1,0 +1,20 @@
+; Two long-held lots (>12mo): one will sell at a gain, the other at a loss.
+; ATO rule: capital losses must offset gains BEFORE the 50% CGT discount.
+; Eligible gain = 1000, loss = 500 → net 500 → after 50% discount = 250.
+2024-01-01 * "Exchange" "Buy ETH lot 1" ; txn:lod-buy-1
+    assets:exchange:eth 10 ETH {{ 1000.00 AUD }}
+    equity:trading:buy -1000.00 AUD
+
+2024-01-02 * "Exchange" "Buy ETH lot 2" ; txn:lod-buy-2
+    assets:exchange:eth 10 ETH {{ 2000.00 AUD }}
+    equity:trading:buy -2000.00 AUD
+
+; Sell first lot at a gain (proceeds 2000, basis 1000 → +1000)
+2025-08-10 * "Exchange" "Sell ETH lot 1" ; txn:lod-sell-1
+    assets:exchange:eth -10 ETH @@ 2000.00 AUD
+    equity:trading:sell 2000.00 AUD
+
+; Sell second lot at a loss (proceeds 1500, basis 2000 → -500)
+2025-08-11 * "Exchange" "Sell ETH lot 2" ; txn:lod-sell-2
+    assets:exchange:eth -10 ETH @@ 1500.00 AUD
+    equity:trading:sell 1500.00 AUD

@@ -1,0 +1,11 @@
+2025-07-10 * "Buy ETH" ; txn:perf-buy-01
+    assets:exchange:eth      10.00000000 ETH {{ 1000.00 AUD }}
+    assets:cash:aud       -1000.00 AUD
+
+2025-09-15 * "Sell ETH" ; txn:perf-sell-01
+    assets:exchange:eth      -4.00000000 ETH
+    assets:cash:aud        1000.00 AUD
+
+2025-11-20 * "Interest" ; txn:perf-income-01
+    assets:cash:aud          50.00 AUD
+    income:interest         -50.00 AUD

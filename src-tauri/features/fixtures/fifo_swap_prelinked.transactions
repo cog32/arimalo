@@ -1,0 +1,18 @@
+; Pre-linked swap (rules already set :sell/:buy, not plain equity:trading)
+; Sell SOL (has price data) for SKBDI (no price data)
+; auto_link_equity_swaps should still add price annotation to SKBDI
+
+; Acquire SOL first
+2024-01-15 * "Exchange" "Buy SOL" ; txn:presell-buy-sol
+    assets:wallet 10 SOL {{ 2000.00 AUD }}
+    equity:trading:buy -2000.00 AUD
+
+; Sell SOL — already tagged :sell by rules
+2024-10-17 05:47:34 * "Raydium" "Swap SOL for SKBDI" ; txn:presell-sell-sol
+    assets:wallet -6.78 SOL
+    equity:trading:sell 6.78 SOL
+
+; Receive SKBDI — already tagged :buy by rules, no price annotation
+2024-10-17 05:47:34 * "Raydium" "Receive SKBDI" ; txn:presell-buy-skbdi
+    assets:wallet 1763 SKBDI
+    equity:trading:buy -1763 SKBDI

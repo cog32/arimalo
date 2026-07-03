@@ -1,0 +1,16 @@
+; Buy 10 ETH at 100 AUD each on exchange
+2025-01-15 * "Exchange" "Buy ETH" ; txn:fifo-buy-01
+    assets:exchange:eth 10 ETH {{ 1000.00 AUD }}
+    equity:trading:buy -1000.00 AUD
+
+; Transfer 5 ETH from exchange to wallet (same commodity, both asset accounts)
+; This should NOT be a taxable event
+2025-05-01 * "Transfer" "ETH to wallet" ; txn:fifo-transfer-01
+    assets:exchange:eth -5 ETH
+    assets:wallet:eth 5 ETH
+
+; Sell 3 ETH from wallet at 200 AUD each
+; FIFO should still have 10 ETH lot, consumes 3 (cost=300)
+2025-08-10 * "Exchange" "Sell ETH" ; txn:fifo-sell-01
+    assets:wallet:eth -3 ETH @@ 600.00 AUD
+    equity:trading:sell 600.00 AUD

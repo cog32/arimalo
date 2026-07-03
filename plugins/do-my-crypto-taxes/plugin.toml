@@ -1,0 +1,19 @@
+[plugin]
+name = "Do My Crypto Taxes"
+version = "0.1.0"
+description = "Iteratively classifies unknown crypto transactions by running `claude -p` against the DO_MY_TAXES process. Loops until no unknowns remain or max_iterations is hit."
+script = "taxes.py"
+
+[config]
+account_set = { type = "string", default = "richard", description = "Account set to classify (passed to arimalo-classify --account-set)" }
+max_iterations = { type = "integer", default = 20, description = "Number of classifications to attempt before exiting (also serves as safety bound against infinite loops)" }
+process_file = { type = "string", default = "DO_MY_TAXES.md", description = "Process spec file (relative to vault root)" }
+accounts_file = { type = "string", default = "TAX_ACCOUNTS.md", description = "Accounts reference file (relative to vault root)" }
+query = { type = "string", default = "account:expenses:unknown AND account:assets:crypto", description = "Query used to find the next unknown txn" }
+claude_bin = { type = "string", default = "claude", description = "Path to the claude CLI" }
+extra_instructions = { type = "string", default = "", description = "Optional extra guidance appended to every prompt" }
+verbose = { type = "boolean", default = true, description = "Stream Claude's tool calls / messages live to stderr (uses --output-format stream-json)" }
+chrome_dir = { type = "string", default = "browser-cdp-9444", description = "Folder name (under vault root) used as the dev-browser-use --chrome-dir profile. Persistent across iterations." }
+cdp_port = { type = "integer", default = 9444, description = "Port used to construct --cdp-url for dev-browser-use (ignored if cdp_url is set)" }
+cdp_url = { type = "string", default = "", description = "Override CDP URL for dev-browser-use (default: http://127.0.0.1:<cdp_port>)" }
+stall_seconds = { type = "integer", default = 300, description = "If claude -p produces no output for this many seconds, the watchdog terminates it and the loop continues to the next txn. Guards against dev-browser-use background tasks that hang without writing an exitcode file." }

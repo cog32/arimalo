@@ -1,0 +1,68 @@
+{
+  "type": "transactions",
+  "id": "005272bb-0f8c-5b03-a99c-40d682bb0c13",
+  "attributes": {
+    "address": "2baaTDzidWekQWQydZcBSwHXgqK1LF9QUUn7VioUrVVD",
+    "operation_type": "execute",
+    "hash": "m8VgGm18qAFkfZshKZz1dZBHTLnSYbQCUgw3zKpxYQrHBF6d5HzqaukCqAage7P2S1sZ13DgzmvqMtdp7rupkHd",
+    "mined_at_block": 110506797,
+    "mined_at": "2021-12-07T20:48:50Z",
+    "sent_from": "2baaTDzidWekQWQydZcBSwHXgqK1LF9QUUn7VioUrVVD",
+    "sent_to": "",
+    "status": "confirmed",
+    "nonce": 0,
+    "fee": {
+      "fungible_info": {
+        "id": "11111111111111111111111111111111",
+        "name": "Solana",
+        "symbol": "SOL",
+        "icon": {
+          "url": "https://cdn.zerion.io/11111111111111111111111111111111.png"
+        },
+        "flags": {
+          "verified": true
+        },
+        "implementations": [
+          {
+            "chain_id": "solana",
+            "address": "",
+            "decimals": 9
+          }
+        ]
+      },
+      "quantity": {
+        "int": "5000",
+        "decimals": 9,
+        "float": 5e-06,
+        "numeric": "0.000005000"
+      },
+      "price": 190.94512461799923,
+      "value": 0.0009547256230899962
+    },
+    "transfers": [],
+    "approvals": [],
+    "flags": {
+      "is_trash": false
+    },
+    "acts": [
+      {
+        "id": "0",
+        "type": "execute",
+        "application_metadata": {
+          "contract_address": "8ykSWtaqZK5V27dtLZrfrevRwMpJGKT7Vu9skaskgibc"
+        }
+      }
+    ]
+  },
+  "relationships": {
+    "chain": {
+      "links": {
+        "related": "https://api.zerion.io/v1/chains/solana"
+      },
+      "data": {
+        "type": "chains",
+        "id": "solana"
+      }
+    }
+  }
+}

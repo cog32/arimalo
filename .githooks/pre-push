@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+export CI=1
+
+echo "[pre-push] Running quick test gate…"
+
+fail() {
+  echo "[pre-push] ERROR: $1" >&2
+  exit 1
+}
+
+# Fast suites first
+if [ -x "scripts/run_unit_tests.sh" ]; then
+  ./scripts/run_unit_tests.sh || fail "Unit tests failed"
+else
+  echo "[pre-push] run_unit_tests.sh missing; falling back to npm test"
+  npm test || fail "Unit tests failed"
+fi
+
+if [ -x "scripts/run_feature_tests.sh" ]; then
+  ./scripts/run_feature_tests.sh || fail "BDD tests failed"
+fi
+
+# E2E is optional unless explicitly configured for the repo.
+if [ -x "scripts/run_e2e_tests.sh" ]; then
+  if [ -f "playwright.config.ts" ] && node -e "require.resolve('@playwright/test')" >/dev/null 2>&1; then
+    ./scripts/run_e2e_tests.sh || fail "E2E tests failed"
+  else
+    echo "[pre-push] Skipping E2E (Playwright not configured/installed)"
+  fi
+else
+  echo "[pre-push] Skipping E2E (scripts/run_e2e_tests.sh missing)"
+fi
+
+echo "[pre-push] OK"

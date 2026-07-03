@@ -1,0 +1,10 @@
+; Buy 10 ETH at 50 AUD each
+2025-01-15 * "Exchange" "Buy ETH" ; txn:fifo-buy-01
+    assets:exchange:eth 10 ETH {{ 500.00 AUD }}
+    equity:trading:buy -500.00 AUD
+
+; Sell 3 ETH at 100 AUD each (within FY2025)
+; FIFO consumes 3 from lot of 10 (cost=150), remainder=7
+2025-08-10 * "Exchange" "Sell ETH" ; txn:fifo-sell-01
+    assets:exchange:eth -3 ETH @@ 300.00 AUD
+    equity:trading:sell 300.00 AUD

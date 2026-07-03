@@ -1,0 +1,43 @@
+; Multi-fill swap where BOTH sides got tagged equity:trading:sell
+; (a category rule that didn't differentiate sign, applied to the same
+; payee/narration on both legs of a Uniswap-style on-chain swap).
+;
+; Bug: the same-leg fallback in find_equity_swap_sibling returns the
+; FIRST counter-commodity sibling at the same datetime, so all three
+; ETH disposals end up sharing the proceeds of the FIRST USD receipt.
+; Larger fills get understated, smaller fills overstated.
+;
+; Mirrors fifo_tagged_equity_multi_fill but with the same suffix on
+; every equity leg — exercises the same-leg branch at reports.rs:480-496.
+
+; Acquire 100 ETH at 10 AUD each.
+2025-01-15 * "Kraken" "Buy ETH" ; txn:sl-acq
+    assets:crypto:exchange:kraken 100 ETH {{ 1000.00 AUD }}
+    assets:cash:aud -1000.00 AUD
+
+; Sell fill 1: 60 ETH out, 600 USD in. Both legs tagged :sell.
+2025-08-10 10:30:00 * "Kraken" "trade ETHUSD" ; txn:sl-sell-01
+    assets:crypto:exchange:kraken -60 ETH
+    equity:trading:sell 60 ETH
+
+2025-08-10 10:30:00 * "Kraken" "trade ETHUSD" ; txn:sl-buy-01
+    assets:crypto:exchange:kraken 600 USD
+    equity:trading:sell -600 USD
+
+; Sell fill 2: 30 ETH out, 300 USD in. Both legs tagged :sell.
+2025-08-10 10:30:00 * "Kraken" "trade ETHUSD" ; txn:sl-sell-02
+    assets:crypto:exchange:kraken -30 ETH
+    equity:trading:sell 30 ETH
+
+2025-08-10 10:30:00 * "Kraken" "trade ETHUSD" ; txn:sl-buy-02
+    assets:crypto:exchange:kraken 300 USD
+    equity:trading:sell -300 USD
+
+; Sell fill 3: 10 ETH out, 100 USD in. Both legs tagged :sell.
+2025-08-10 10:30:00 * "Kraken" "trade ETHUSD" ; txn:sl-sell-03
+    assets:crypto:exchange:kraken -10 ETH
+    equity:trading:sell 10 ETH
+
+2025-08-10 10:30:00 * "Kraken" "trade ETHUSD" ; txn:sl-buy-03
+    assets:crypto:exchange:kraken 100 USD
+    equity:trading:sell -100 USD

@@ -1,0 +1,19 @@
+; Buy 10 ETH at 100 AUD each
+2025-01-15 * "Exchange" "Buy ETH" ; txn:fifo-buy-eth-01
+    assets:exchange:eth 10 ETH {{ 1000.00 AUD }}
+    equity:trading:buy -1000.00 AUD
+
+; Buy 1 BTC at 50000 AUD
+2025-02-01 * "Exchange" "Buy BTC" ; txn:fifo-buy-btc-01
+    assets:exchange:btc 1 BTC {{ 50000.00 AUD }}
+    equity:trading:buy -50000.00 AUD
+
+; Sell 5 ETH at 150 AUD each
+2025-08-10 * "Exchange" "Sell ETH" ; txn:fifo-sell-eth-01
+    assets:exchange:eth -5 ETH @@ 750.00 AUD
+    equity:trading:sell 750.00 AUD
+
+; Sell 0.5 BTC at 60000 AUD per BTC
+2025-09-01 * "Exchange" "Sell BTC" ; txn:fifo-sell-btc-01
+    assets:exchange:btc -0.5 BTC @@ 30000.00 AUD
+    equity:trading:sell 30000.00 AUD

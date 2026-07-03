@@ -1,0 +1,27 @@
+; Three buys, two sells — totals must reconcile exactly
+; Buy 10 ETH at 100 AUD each
+2025-01-15 * "Exchange" "Buy ETH lot 1" ; txn:inv-recon-buy-01
+    assets:exchange:eth 10 ETH {{ 1000.00 AUD }}
+    equity:trading:buy -1000.00 AUD
+
+; Buy 5 ETH at 200 AUD each
+2025-03-01 * "Exchange" "Buy ETH lot 2" ; txn:inv-recon-buy-02
+    assets:exchange:eth 5 ETH {{ 1000.00 AUD }}
+    equity:trading:buy -1000.00 AUD
+
+; Buy 3 ETH at 300 AUD each
+2025-05-01 * "Exchange" "Buy ETH lot 3" ; txn:inv-recon-buy-03
+    assets:exchange:eth 3 ETH {{ 900.00 AUD }}
+    equity:trading:buy -900.00 AUD
+
+; Sell 7 ETH at 250 AUD each (FIFO: 7 from lot 1, cost=700)
+2025-08-10 * "Exchange" "Sell ETH batch 1" ; txn:inv-recon-sell-01
+    assets:exchange:eth -7 ETH @@ 1750.00 AUD
+    equity:trading:sell 1750.00 AUD
+
+; Sell 6 ETH at 350 AUD each (FIFO: 3 from lot 1 + 3 from lot 2, cost=300+600=900... wait)
+; lot 1: 10 - 7 = 3 remain, cost=300; lot 2: 5, cost=1000; lot 3: 3, cost=900
+; This sell takes 3 from lot 1 (cost 300) + 3 from lot 2 (cost 600) = cost 900
+2025-09-15 * "Exchange" "Sell ETH batch 2" ; txn:inv-recon-sell-02
+    assets:exchange:eth -6 ETH @@ 2100.00 AUD
+    equity:trading:sell 2100.00 AUD
